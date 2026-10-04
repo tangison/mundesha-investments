@@ -1,0 +1,130 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import LogoWall from '../components/LogoWall.astro';
+import CTABand from '../components/CTABand.astro';
+import { SERVICES, SERVICE_BY_SLUG } from '../data/services';
+import { FEATURED } from '../data/projects';
+import { SITE, REGIONS } from '../data/site';
+import images from '../data/images.json';
+
+const hero = images.hero;
+const showLogos = process.env.SHOW_CLIENT_LOGOS !== 'false';
+
+const title = 'Air Conditioning and Refrigeration | Mundesha Investments';
+const description =
+  'Air conditioning, refrigeration, electrical and trade services for government, mining, retail and hospitality across Namibia since 2016. Request a quote.';
+---
+<Base title={title} description={description} path="/">
+  <section class="hero">
+    <img
+      class="hero-img"
+      src={hero.src}
+      alt="Technician on a ladder servicing wall mounted air conditioning units"
+      width={hero.width}
+      height={hero.height}
+      fetchpriority="high"
+      decoding="async"
+    />
+    <div class="hero-slash s1" aria-hidden="true"></div>
+    <div class="hero-slash s2" aria-hidden="true"></div>
+    <div class="hero-slash s3" aria-hidden="true"></div>
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-kicker">Since {SITE.founded} | {SITE.address}</p>
+        <h1>
+          Air conditioning, refrigeration and electrical work across <span class="accent">Namibia</span>
+        </h1>
+        <p class="hero-sub">
+          Mundesha Investments has served government, mining, retail and hospitality clients since 2016.
+          Quality work at a fair price.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/contact">Request a quote</a>
+          <a class="btn btn-outline-light" href={`tel:${SITE.phones[0].tel}`}>Call {SITE.phones[0].display}</a>
+        </div>
+        <p class="hero-meta">Your needs, Our Business. {SITE.ownerExperience}.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="services-heading">
+    <div class="container">
+      <div id="services-heading"><SectionHeading first="OUR" second="SERVICES" /></div>
+      <p class="section-intro">
+        Seven trade services under one roof. One number to call, one team that shows up.
+      </p>
+      <div class="tiles">
+        {SERVICES.map((s) => (
+          <article class="service-card">
+            <h3>{s.shortName}</h3>
+            <p>{s.blurb}</p>
+            <a class="more" href={`/services/${s.slug}`} aria-label={`Learn more about ${s.name}`}>Learn more</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-ink proof" aria-label="Track record">
+    <div class="container">
+      <div class="proof-grid">
+        <div class="proof-item">
+          <p class="big">{SITE.founded}</p>
+          <p class="cap">Founded</p>
+        </div>
+        <div class="proof-item">
+          <p class="big">20+</p>
+          <p class="cap">Years of owner experience</p>
+          <p>in electrical, air conditioning and refrigeration</p>
+        </div>
+        <div class="proof-item">
+          <p class="big">{REGIONS.length}</p>
+          <p class="cap">Regions served</p>
+          <p>{REGIONS.join(', ')}</p>
+        </div>
+        <div class="proof-item">
+          <p class="big">2016 to 2025</p>
+          <p class="cap">Project record</p>
+          <p>including Swakop Uranium, GIPF, Coca-Cola and the Ministry of Justice</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" aria-labelledby="projects-heading">
+    <div class="container">
+      <div id="projects-heading"><SectionHeading first="RECENT" second="PROJECTS" /></div>
+      <p class="section-intro">
+        Newest jobs first. The full record lives on the <a href="/projects" style="color:var(--brand-primary);font-weight:600">projects page</a>.
+      </p>
+      <div class="feat-grid">
+        {FEATURED.map((pr) => (
+          <ProjectCard
+            client={pr.client}
+            work={pr.work}
+            date={pr.date}
+            year={pr.year}
+            service={pr.service}
+            serviceName={SERVICE_BY_SLUG.get(pr.service)?.shortName ?? pr.service}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {showLogos && (
+    <section class="section" aria-labelledby="clients-heading">
+      <div class="container">
+        <div id="clients-heading"><SectionHeading first="TRUSTED" second="BY" /></div>
+        <p class="section-intro">
+          Some of the organisations we have worked for. References available on request.
+        </p>
+        <LogoWall />
+      </div>
+    </section>
+  )}
+
+  <CTABand />
+</Base>

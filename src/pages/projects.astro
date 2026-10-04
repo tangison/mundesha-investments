@@ -1,0 +1,100 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CTABand from '../components/CTABand.astro';
+import { PROJECTS, projectYears } from '../data/projects';
+import { SERVICES, SERVICE_BY_SLUG } from '../data/services';
+
+const title = 'Our Projects | Mundesha Investments';
+const description =
+  'Our project record from 2016 to 2025: real work for government, mining, retail and hospitality clients across Namibia. Newest first.';
+
+const serviceName = (slug: string) => SERVICE_BY_SLUG.get(slug)?.shortName ?? slug;
+---
+<Base title={title} description={description} path="/projects">
+  <section class="page-hero">
+    <div class="container">
+      <h1>OUR PROJECTS</h1>
+      <p class="lead">From our first fridge maintenance contract in 2016 to clinic installations in 2025. Newest first. References available on request.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading first="THE" second="RECORD" />
+      <div class="filters" role="group" aria-label="Filter by service">
+        <span class="filter-label">Service</span>
+        <button class="filter-chip" type="button" data-filter="service" data-value="all" aria-pressed="true">All services</button>
+        {SERVICES.map((s) => (
+          <button class="filter-chip" type="button" data-filter="service" data-value={s.slug} aria-pressed="false">{s.shortName}</button>
+        ))}
+      </div>
+      <div class="filters" role="group" aria-label="Filter by year">
+        <span class="filter-label">Year</span>
+        <button class="filter-chip" type="button" data-filter="year" data-value="all" aria-pressed="true">All years</button>
+        {projectYears.map((y) => (
+          <button class="filter-chip" type="button" data-filter="year" data-value={String(y)} aria-pressed="false">{y}</button>
+        ))}
+      </div>
+
+      <p id="filter-count" style="font-size:0.9rem;color:var(--muted);margin-bottom:20px" role="status"></p>
+
+      <div class="feat-grid" id="project-grid" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+        {PROJECTS.map((pr) => (
+          <ProjectCard
+            client={pr.client}
+            work={pr.work}
+            date={pr.date}
+            year={pr.year}
+            service={pr.service}
+            serviceName={serviceName(pr.service)}
+          />
+        ))}
+      </div>
+
+      <p style="margin-top:28px;font-size:0.95rem;color:var(--muted)">
+        Two entries from the profile are shown without dates because the source dates could not be
+        confirmed. We never publish guessed dates.
+      </p>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>
+
+<script>
+  const grid = document.getElementById('project-grid');
+  const count = document.getElementById('filter-count');
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.filter-chip'));
+  let serviceFilter = 'all';
+  let yearFilter = 'all';
+
+  function apply() {
+    if (!grid || !count) return;
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('.project-card'));
+    let shown = 0;
+    cards.forEach((card) => {
+      const okService = serviceFilter === 'all' || card.dataset.service === serviceFilter;
+      const okYear = yearFilter === 'all' || card.dataset.year === yearFilter;
+      const show = okService && okYear;
+      card.style.display = show ? '' : 'none';
+      if (show) shown += 1;
+    });
+    count.textContent = `${shown} project${shown === 1 ? '' : 's'} shown`;
+  }
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const kind = chip.dataset.filter;
+      if (kind === 'service') serviceFilter = chip.dataset.value ?? 'all';
+      if (kind === 'year') yearFilter = chip.dataset.value ?? 'all';
+      chips
+        .filter((c) => c.dataset.filter === kind)
+        .forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+      apply();
+    });
+  });
+
+  apply();
+</script>

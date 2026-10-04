@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+
+const title = 'Terms of Service | Mundesha Investments';
+const description =
+  'The terms that apply when you request a quote or use the Mundesha Investments website. Quotes, scope of work, payment and Namibian law.';
+---
+<Base title={title} description={description} path="/terms">
+  <section class="page-hero">
+    <div class="container">
+      <h1>TERMS OF SERVICE</h1>
+      <p class="lead">The basics of how we quote, work and get paid. Your formal quote or contract always takes precedence.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose">
+      <h3>These terms</h3>
+      <p>
+        These terms apply when you use this website and when you ask us for a quote. Each job is
+        governed by the written quote or contract we issue for it. If the quote and these terms
+        differ, the quote wins.
+      </p>
+
+      <h3>Quotes</h3>
+      <p>
+        Every quote states its own validity period and scope. Prices are quoted in Namibian dollars
+        (N$) unless stated otherwise. A quote is an offer that becomes binding only when both sides
+        agree, in writing or by confirmed instruction to proceed.
+      </p>
+
+      <h3>Scope and site access</h3>
+      <p>
+        We do the work listed in the quote. If the site is not accessible, or if conditions on site
+        differ materially from what was described, we will raise it before proceeding and adjust the
+        scope and price by agreement. Where we work inside occupied buildings, mines or public
+        facilities, we follow the safety and access rules of that site.
+      </p>
+
+      <h3>Payment</h3>
+      <p>
+        Payment terms are stated on each invoice. We may require a deposit or progress payments for
+        materials and long jobs. Invoices unpaid by their due date may pause further work until the
+        account is settled.
+      </p>
+
+      <h3>Warranty and liability</h3>
+      <p>
+        We stand behind the quality of our work. Installed equipment is covered by the supplier or
+        manufacturer warranty that comes with it, and our workmanship is warranted against defects
+        for a reasonable period stated in the quote. To the fullest extent allowed by Namibian law,
+        we are not liable for indirect or consequential losses. Nothing in these terms limits rights
+        you have under Namibian law that cannot be limited.
+      </p>
+
+      <h3>Website content</h3>
+      <p>
+        The project record on this site describes real work done since 2016. Photographs of client
+        sites are shown as examples of our work and remain the property of their owners. Client logos
+        belong to their respective organisations.
+      </p>
+
+      <h3>Law and contact</h3>
+      <p>
+        These terms are governed by the laws of the Republic of Namibia. Questions, disputes or
+        notices: {SITE.email}, {SITE.phones[0].display}, {SITE.address}. Effective from 1 October 2026.
+      </p>
+    </div>
+  </section>
+</Base>

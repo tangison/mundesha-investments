@@ -1,0 +1,66 @@
+---
+import { SITE, STUDIO_CREDIT } from '../data/site';
+import { SERVICES } from '../data/services';
+
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img
+          src="/logos/mundesha/mundesha-logo-horizontal-dark.svg"
+          alt="Mundesha Investments"
+          width="238"
+          height="75"
+          loading="lazy"
+          style="height:44px;width:auto"
+        />
+        <p>
+          Air conditioning, refrigeration, electrical and related trade services,
+          delivered across Namibia since {SITE.founded}.
+        </p>
+        <p class="footer-tagline">Your needs, <span>Our Business</span></p>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <ul class="footer-contact">
+          {SITE.phones.map((phone) => (
+            <li><a href={`tel:${phone.tel}`}>{phone.display}</a></li>
+          ))}
+          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+          <li><a href={SITE.whatsapp} rel="noopener">WhatsApp us</a></li>
+          <li><a href={SITE.instagram.url} rel="noopener">Instagram: {SITE.instagram.handle}</a></li>
+          <li><span style="color:rgba(255,255,255,0.82);font-size:0.93rem">{SITE.address}</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Services</h3>
+        <ul>
+          {SERVICES.map((s) => (
+            <li><a href={`/services/${s.slug}`}>{s.name}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h3>Company</h3>
+        <ul>
+          <li><a href="/projects">Projects</a></li>
+          <li><a href="/clients">Clients</a></li>
+          <li><a href="/about">About us</a></li>
+          <li><a href="/brand">Brand guidelines</a></li>
+          <li><a href="/privacy-policy">Privacy policy</a></li>
+          <li><a href="/terms">Terms of service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; {year} {SITE.legalName}. All rights reserved.</span>
+      <span class="credit">Made by <a href={STUDIO_CREDIT.url} rel="noopener">Tangison Studio</a></span>
+    </div>
+  </div>
+</footer>

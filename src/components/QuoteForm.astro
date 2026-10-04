@@ -1,0 +1,177 @@
+---
+import { SERVICES } from '../data/services';
+---
+<div id="quote-form-wrap">
+  <form class="quote-form" id="quote-form" novalidate>
+    <div class="form-row">
+      <div class="field">
+        <label for="qf-name">Name <span class="req" aria-hidden="true">*</span></label>
+        <input id="qf-name" name="name" type="text" autocomplete="name" required maxlength="80" />
+        <p class="error" id="qf-name-err" role="alert" hidden></p>
+      </div>
+      <div class="field">
+        <label for="qf-phone">Phone <span class="req" aria-hidden="true">*</span></label>
+        <input id="qf-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required maxlength="20" />
+        <p class="error" id="qf-phone-err" role="alert" hidden></p>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="field">
+        <label for="qf-service">Service <span class="req" aria-hidden="true">*</span></label>
+        <select id="qf-service" name="service" required>
+          <option value="" selected>Select a service</option>
+          {SERVICES.map((s) => <option value={s.slug}>{s.name}</option>)}
+          <option value="other">Other</option>
+        </select>
+        <p class="error" id="qf-service-err" role="alert" hidden></p>
+      </div>
+      <div class="field">
+        <label for="qf-town">Town</label>
+        <input id="qf-town" name="town" type="text" autocomplete="address-level2" maxlength="60" />
+        <p class="error" id="qf-town-err" role="alert" hidden></p>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="qf-message">Message <span class="req" aria-hidden="true">*</span></label>
+      <textarea id="qf-message" name="message" required maxlength="2000"
+        placeholder="Tell us what you need, where and by when."></textarea>
+      <p class="error" id="qf-message-err" role="alert" hidden></p>
+    </div>
+
+    <div class="hp-field" aria-hidden="true">
+      <label for="qf-company">Company (leave empty)</label>
+      <input id="qf-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Send request</button>
+    <p class="form-note">
+      Your details are used only to prepare your quote. No newsletters, no sharing.
+    </p>
+  </form>
+
+  <div class="form-success" id="quote-success" hidden>
+    <h3 id="quote-success-title">Thank you</h3>
+    <p id="quote-success-text"></p>
+    <div class="btn-row" id="quote-success-actions" hidden>
+      <a class="btn btn-primary" id="quote-fallback-wa" href="#" rel="noopener">Send on WhatsApp</a>
+      <a class="btn btn-outline-light" id="quote-fallback-mail" href="#">Send by email</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('quote-form') as HTMLFormElement | null;
+  const success = document.getElementById('quote-success');
+  const successTitle = document.getElementById('quote-success-title');
+  const successText = document.getElementById('quote-success-text');
+  const successActions = document.getElementById('quote-success-actions');
+  const waLink = document.getElementById('quote-fallback-wa') as HTMLAnchorElement | null;
+  const mailLink = document.getElementById('quote-fallback-mail') as HTMLAnchorElement | null;
+
+  const phoneOk = (v: string) => /^\+?[0-9][0-9\s-]{7,17}$/.test(v.trim());
+
+  function setError(id: string, msg: string) {
+    const input = document.getElementById(id) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+    const err = document.getElementById(id + '-err');
+    if (msg) {
+      input.setAttribute('aria-invalid', 'true');
+      if (err) { err.textContent = msg; err.hidden = false; }
+    } else {
+      input.removeAttribute('aria-invalid');
+      if (err) { err.hidden = true; }
+    }
+  }
+
+  function validate(): boolean {
+    let ok = true;
+    const name = (document.getElementById('qf-name') as HTMLInputElement).value.trim();
+    const phone = (document.getElementById('qf-phone') as HTMLInputElement).value.trim();
+    const service = (document.getElementById('qf-service') as HTMLSelectElement).value;
+    const message = (document.getElementById('qf-message') as HTMLTextAreaElement).value.trim();
+
+    if (name.length < 2) { setError('qf-name', 'Please enter your name.'); ok = false; } else setError('qf-name', '');
+    if (!phoneOk(phone)) { setError('qf-phone', 'Please enter a valid phone number, for example +264 81 277 7553.'); ok = false; } else setError('qf-phone', '');
+    if (!service) { setError('qf-service', 'Please choose a service.'); ok = false; } else setError('qf-service', '');
+    if (message.length < 5) { setError('qf-message', 'Please tell us briefly what you need.'); ok = false; } else setError('qf-message', '');
+    return ok;
+  }
+
+  ['qf-name', 'qf-phone', 'qf-service', 'qf-message'].forEach((id) => {
+    const el = document.getElementById(id);
+    el?.addEventListener('blur', () => { if ((el as HTMLElement).dataset.touched === '1') validate(); });
+    el?.addEventListener('input', () => {
+      (el as HTMLElement).dataset.touched = '1';
+      if (el.getAttribute('aria-invalid') === 'true') validate();
+    });
+  });
+
+  function buildSummary() {
+    const name = (document.getElementById('qf-name') as HTMLInputElement).value.trim();
+    const phone = (document.getElementById('qf-phone') as HTMLInputElement).value.trim();
+    const service = (document.getElementById('qf-service') as HTMLSelectElement);
+    const town = (document.getElementById('qf-town') as HTMLInputElement).value.trim();
+    const message = (document.getElementById('qf-message') as HTMLTextAreaElement).value.trim();
+    const serviceName = service.options[service.selectedIndex]?.text ?? service.value;
+    return [
+      'Quote request from the Mundesha Investments website:',
+      'Name: ' + name,
+      'Phone: ' + phone,
+      'Service: ' + serviceName,
+      town ? 'Town: ' + town : null,
+      'Message: ' + message
+    ].filter(Boolean).join('\n');
+  }
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+
+      const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+
+      const payload = {
+        name: (document.getElementById('qf-name') as HTMLInputElement).value.trim(),
+        phone: (document.getElementById('qf-phone') as HTMLInputElement).value.trim(),
+        service: (document.getElementById('qf-service') as HTMLSelectElement).value,
+        town: (document.getElementById('qf-town') as HTMLInputElement).value.trim(),
+        message: (document.getElementById('qf-message') as HTMLTextAreaElement).value.trim(),
+        company: (document.getElementById('qf-company') as HTMLInputElement).value,
+        ts: Number(form.dataset.t0 || 0)
+      };
+
+      try {
+        const res = await fetch('/api/quote', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        form.hidden = true;
+        if (!success || !successTitle || !successText) return;
+        success.hidden = false;
+        if (data.ok && data.delivered) {
+          successTitle.textContent = 'Thank you, ' + payload.name.split(' ')[0];
+          successText.textContent = 'We received your request and will get back to you. For anything urgent, call +264 81 277 7553.';
+        } else {
+          successTitle.textContent = 'Your request is ready';
+          successText.textContent = 'Tap a button below to send it straight to our team. WhatsApp reaches us fastest.';
+          if (successActions && waLink && mailLink) {
+            const summary = buildSummary();
+            waLink.href = 'https://wa.me/264812777553?text=' + encodeURIComponent(summary);
+            mailLink.href = 'mailto:Mundesha.inv.cc@gmail.com?subject=' + encodeURIComponent('Quote request: ' + payload.name) + '&body=' + encodeURIComponent(summary);
+            successActions.hidden = false;
+          }
+        }
+      } catch {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send request';
+        setError('qf-message', 'Network problem. Please try again, or send the request on WhatsApp.');
+      }
+    });
+    form.dataset.t0 = String(Date.now());
+  }
+</script>

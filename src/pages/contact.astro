@@ -1,0 +1,85 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import QuoteForm from '../components/QuoteForm.astro';
+import { SITE } from '../data/site';
+
+const title = 'Request a Quote | Mundesha Investments';
+const description =
+  'Request a quote from Mundesha Investments. Call +264 81 277 7553, WhatsApp us or send the form. Based in Windhoek, working all around Namibia.';
+---
+<Base title={title} description={description} path="/contact">
+  <section class="page-hero">
+    <div class="container">
+      <h1>REQUEST A QUOTE</h1>
+      <p class="lead">Tell us what you need, where and by when. We quote clearly and show up when we say we will.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <SectionHeading first="GET IN" second="TOUCH" />
+          <QuoteForm />
+        </div>
+
+        <div>
+          <SectionHeading first="DIRECT" second="LINES" />
+          <div class="contact-card">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
+            </span>
+            <div>
+              <h3>Phone</h3>
+              {SITE.phones.map((phone) => (
+                <a href={`tel:${phone.tel}`} style="display:block">{phone.display}</a>
+              ))}
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C7 3 3 7 3 12c0 1.6.4 3.1 1.2 4.4L3 21l4.7-1.2c1.3.7 2.7 1.1 4.3 1.1 5 0 9-4 9-9s-4-9-9-9zm5.2 12.7c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.8.8 1.9.1.1.1.3 0 .5-.3.6-.7.9-.5 1.2.7 1.2 1.6 2 2.8 2.6.3.2.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.4 0 .1 0 .7-.2 1.3z"/></svg>
+            </span>
+            <div>
+              <h3>WhatsApp</h3>
+              <a href={SITE.whatsapp} rel="noopener">Chat with us on WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            </span>
+            <div>
+              <h3>Email</h3>
+              <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+            </span>
+            <div>
+              <h3>Instagram</h3>
+              <a href={SITE.instagram.url} rel="noopener">{SITE.instagram.handle}</a>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <span class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+            </span>
+            <div>
+              <h3>Where we are</h3>
+              <span style="font-weight:600">{SITE.address}</span>
+              <p style="font-size:0.88rem;color:var(--muted);margin-top:4px">Projects delivered all around Namibia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

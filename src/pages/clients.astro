@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import LogoWall from '../components/LogoWall.astro';
+import CTABand from '../components/CTABand.astro';
+
+const showLogos = process.env.SHOW_CLIENT_LOGOS !== 'false';
+
+const title = 'Our Clients | Mundesha Investments';
+const description =
+  'Organisations Mundesha Investments has served since 2016, including Swakop Uranium, GIPF, Coca-Cola, MTC, NWR and regional councils across Namibia.';
+
+const moreClients = [
+  'Ministry of Health and Social Services',
+  'Ministry of Justice',
+  'Ministry of Works',
+  'NORED',
+  'Epako Clinic, Gobabis',
+  'Epukiro Clinic',
+  'Da Palm Secondary School',
+  'Keetmans Pharmacy',
+  'Shield Force Consulting Engineers'
+];
+---
+<Base title={title} description={description} path="/clients">
+  <section class="page-hero">
+    <div class="container">
+      <h1>OUR CLIENTS</h1>
+      <p class="lead">Government offices, mines, retailers and hospitality groups have trusted us with their facilities since 2016.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading first="WHO WE" second="WORK FOR" />
+      {showLogos ? (
+        <LogoWall />
+      ) : (
+        <p class="section-intro">A client list is available on request while logo permissions are being confirmed.</p>
+      )}
+      <h3 style="font-size:1.15rem;margin:40px 0 14px">And more across the country</h3>
+      <ul class="tag-cloud">
+        {moreClients.map((c) => <li class="tag">{c}</li>)}
+      </ul>
+      <p style="margin-top:28px;font-size:0.95rem;color:var(--muted)">
+        Logos belong to their respective organisations. References are available on request.
+      </p>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

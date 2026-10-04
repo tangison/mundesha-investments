@@ -1,0 +1,112 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABand from '../components/CTABand.astro';
+import { SITE, WORKFORCE } from '../data/site';
+import images from '../data/images.json';
+
+const owner = images.owner;
+const grassland = images.accents['Namibia-Backdrops']['01_omaheke-grassland'];
+
+const title = 'About Us | Mundesha Investments';
+const description =
+  'Mundesha Investment One CC was founded in 2016 by Elia Hangeige Mudesha. Quality of work and good value for money, delivered all around Namibia.';
+---
+<Base title={title} description={description} path="/about">
+  <section class="page-hero">
+    <div class="container">
+      <h1>ABOUT US</h1>
+      <p class="lead">Your needs, Our Business. A trade company built on quality of work and good value for money.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;gap:48px;grid-template-columns:1fr;align-items:center" class="about-grid">
+        <div class="prose">
+          <SectionHeading first="OUR" second="STORY" />
+          <p>
+            Mundesha Investment One CC was founded in 2016 by Mr. Elia Hangeige Mudesha. We offer our
+            services all around Namibia. We believe in quality of work and give our customers good value
+            for their money.
+          </p>
+          <p>
+            Mr. Mudesha brings over 20 years of experience in electrical work, air conditioning and
+            refrigeration to every job. That experience shapes how the company works: units are sized
+            properly, cables are run cleanly, and sites are left tidy. Government offices, clinics,
+            schools, mines and retailers have all trusted us with their facilities since 2016.
+          </p>
+          <p>
+            Our base is in Windhoek, but our work is not. Projects have taken our teams to Gobabis,
+            Otjimbingwe, Tsumkwe, Omaruru, Oshakati and the Erongo coast, servicing everything from
+            clinic air conditioners to resort freezer rooms.
+          </p>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:20px">
+          <img
+            class="ring-photo"
+            src={owner.src}
+            alt="Mr. Elia Hangeige Mudesha, founder and owner of Mundesha Investment One CC"
+            width={owner.width}
+            height={owner.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <div style="text-align:center">
+            <p style="font-family:var(--font-display);font-weight:700">{SITE.founder}</p>
+            <p style="font-size:0.9rem;color:var(--muted)">Founder and owner</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    @media (min-width: 860px) {
+      .about-grid { grid-template-columns: 1.2fr 0.8fr !important; }
+    }
+  </style>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading first="WHAT WE" second="STAND FOR" />
+      <div class="value-grid">
+        <div class="value-card">
+          <h3>Quality of work</h3>
+          <p>
+            We do the job properly the first time. Units are commissioned before handover, boards are
+            labelled, and brickwork is finished clean. Our name rides on every site we leave.
+          </p>
+        </div>
+        <div class="value-card">
+          <h3>Good value for money</h3>
+          <p>
+            Fair prices for solid work. We quote clearly, stick to the scope, and maintain what we
+            install so it keeps earning its keep for years.
+          </p>
+        </div>
+        <div class="value-card">
+          <h3>All around Namibia</h3>
+          <p>
+            Windhoek is home but it is not our limit. We take our services to towns, villages, farms
+            and mines across the country.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading first="OUR" second="WORKFORCE" />
+      <p class="section-intro">
+        A full trade team, deployed to site as the job requires.
+      </p>
+      <ul class="tag-cloud">
+        {WORKFORCE.map((w) => <li class="tag">{w}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>

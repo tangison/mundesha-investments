@@ -1,0 +1,24 @@
+---
+import images from '../data/images.json';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const clients = images.clients;
+---
+<ul class={`logo-wall ${className ?? ''}`}>
+  {clients.map((c) => (
+    <li class="logo-cell">
+      <img
+        src={c.file}
+        alt={`${c.slug.replace(/-/g, ' ')} logo`}
+        width={c.width}
+        height={c.height}
+        loading="lazy"
+        decoding="async"
+      />
+    </li>
+  ))}
+</ul>

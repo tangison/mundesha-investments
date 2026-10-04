@@ -1,0 +1,291 @@
+{
+  "hero": {
+    "src": "/images/hero-ac-technician.webp",
+    "width": 1400,
+    "height": 1464,
+    "bytes": 122072
+  },
+  "photos": {
+    "construction-site": {
+      "src": "/images/photos/construction-site.webp",
+      "width": 850,
+      "height": 858,
+      "bytes": 85630
+    },
+    "distribution-board": {
+      "src": "/images/photos/distribution-board.webp",
+      "width": 810,
+      "height": 574,
+      "bytes": 58556
+    },
+    "electrician-wiring-panel": {
+      "src": "/images/photos/electrician-wiring-panel.webp",
+      "width": 946,
+      "height": 1280,
+      "bytes": 63324
+    },
+    "freezer-room-condensing-unit": {
+      "src": "/images/photos/freezer-room-condensing-unit.webp",
+      "width": 1100,
+      "height": 611,
+      "bytes": 71834
+    },
+    "industrial-washer-service": {
+      "src": "/images/photos/industrial-washer-service.webp",
+      "width": 960,
+      "height": 1280,
+      "bytes": 90110
+    },
+    "reefer-unit-service": {
+      "src": "/images/photos/reefer-unit-service.webp",
+      "width": 810,
+      "height": 819,
+      "bytes": 64704
+    },
+    "samsung-split-units-install": {
+      "src": "/images/photos/samsung-split-units-install.webp",
+      "width": 369,
+      "height": 789,
+      "bytes": 43214
+    },
+    "solar-gate": {
+      "src": "/images/photos/solar-gate.webp",
+      "width": 806,
+      "height": 673,
+      "bytes": 64594
+    },
+    "split-ac-installed-clinic": {
+      "src": "/images/photos/split-ac-installed-clinic.webp",
+      "width": 413,
+      "height": 415,
+      "bytes": 28222
+    },
+    "washer-repair-tall": {
+      "src": "/images/photos/washer-repair-tall.webp",
+      "width": 749,
+      "height": 1280,
+      "bytes": 64802
+    },
+    "washer-repair-wide": {
+      "src": "/images/photos/washer-repair-wide.webp",
+      "width": 749,
+      "height": 563,
+      "bytes": 28092
+    },
+    "water-tank-stand": {
+      "src": "/images/photos/water-tank-stand.webp",
+      "width": 1100,
+      "height": 473,
+      "bytes": 66348
+    }
+  },
+  "owner": {
+    "src": "/images/owner-portrait-elia-mudesha.webp",
+    "width": 320,
+    "height": 320,
+    "bytes": 24334
+  },
+  "accents": {
+    "Brand-Backgrounds": {
+      "02_charcoal": {
+        "src": "/images/accents/Brand-Backgrounds/02_charcoal.webp",
+        "width": 400,
+        "height": 402,
+        "bytes": 1322
+      },
+      "03_brushed-metal-red-stripe": {
+        "src": "/images/accents/Brand-Backgrounds/03_brushed-metal-red-stripe.webp",
+        "width": 401,
+        "height": 402,
+        "bytes": 3986
+      },
+      "04_white-wall-red-band": {
+        "src": "/images/accents/Brand-Backgrounds/04_white-wall-red-band.webp",
+        "width": 403,
+        "height": 401,
+        "bytes": 1908
+      },
+      "06_grey-red-diagonal": {
+        "src": "/images/accents/Brand-Backgrounds/06_grey-red-diagonal.webp",
+        "width": 401,
+        "height": 401,
+        "bytes": 2738
+      }
+    },
+    "Namibia-Backdrops": {
+      "01_omaheke-grassland": {
+        "src": "/images/accents/Namibia-Backdrops/01_omaheke-grassland.webp",
+        "width": 417,
+        "height": 417,
+        "bytes": 20394
+      },
+      "02_dunes-sunrise": {
+        "src": "/images/accents/Namibia-Backdrops/02_dunes-sunrise.webp",
+        "width": 417,
+        "height": 417,
+        "bytes": 10694
+      },
+      "03_windhoek-dusk": {
+        "src": "/images/accents/Namibia-Backdrops/03_windhoek-dusk.webp",
+        "width": 417,
+        "height": 417,
+        "bytes": 21276
+      },
+      "04_sunlit-wall": {
+        "src": "/images/accents/Namibia-Backdrops/04_sunlit-wall.webp",
+        "width": 417,
+        "height": 318,
+        "bytes": 10552
+      },
+      "05_bushveld-road": {
+        "src": "/images/accents/Namibia-Backdrops/05_bushveld-road.webp",
+        "width": 417,
+        "height": 318,
+        "bytes": 18082
+      },
+      "06_rocky-hills": {
+        "src": "/images/accents/Namibia-Backdrops/06_rocky-hills.webp",
+        "width": 417,
+        "height": 318,
+        "bytes": 22432
+      }
+    },
+    "Trade-Details": {
+      "01_copper-pipes": {
+        "src": "/images/accents/Trade-Details/01_copper-pipes.webp",
+        "width": 419,
+        "height": 421,
+        "bytes": 5712
+      },
+      "02_gauge-set": {
+        "src": "/images/accents/Trade-Details/02_gauge-set.webp",
+        "width": 419,
+        "height": 421,
+        "bytes": 10994
+      },
+      "03_breaker-board": {
+        "src": "/images/accents/Trade-Details/03_breaker-board.webp",
+        "width": 418,
+        "height": 421,
+        "bytes": 22584
+      },
+      "04_split-ac": {
+        "src": "/images/accents/Trade-Details/04_split-ac.webp",
+        "width": 419,
+        "height": 423,
+        "bytes": 4950
+      },
+      "05_hand-tools": {
+        "src": "/images/accents/Trade-Details/05_hand-tools.webp",
+        "width": 419,
+        "height": 423,
+        "bytes": 4748
+      },
+      "06_cold-room-door": {
+        "src": "/images/accents/Trade-Details/06_cold-room-door.webp",
+        "width": 418,
+        "height": 423,
+        "bytes": 4220
+      }
+    }
+  },
+  "clients": [
+    {
+      "slug": "cenored",
+      "file": "/logos/clients/cenored.webp",
+      "width": 448,
+      "height": 160,
+      "bytes": 24920
+    },
+    {
+      "slug": "coca-cola",
+      "file": "/logos/clients/coca-cola.webp",
+      "width": 160,
+      "height": 160,
+      "bytes": 9912
+    },
+    {
+      "slug": "delafi-electrical-services",
+      "file": "/logos/clients/delafi-electrical-services.webp",
+      "width": 269,
+      "height": 160,
+      "bytes": 11042
+    },
+    {
+      "slug": "gipf",
+      "file": "/logos/clients/gipf.webp",
+      "width": 393,
+      "height": 160,
+      "bytes": 26350
+    },
+    {
+      "slug": "mtc",
+      "file": "/logos/clients/mtc.webp",
+      "width": 413,
+      "height": 160,
+      "bytes": 23278
+    },
+    {
+      "slug": "namibia-wildlife-resorts",
+      "file": "/logos/clients/namibia-wildlife-resorts.webp",
+      "width": 414,
+      "height": 160,
+      "bytes": 22506
+    },
+    {
+      "slug": "national-heritage-council-of-namibia",
+      "file": "/logos/clients/national-heritage-council-of-namibia.webp",
+      "width": 158,
+      "height": 160,
+      "bytes": 15384
+    },
+    {
+      "slug": "omaheke-radio-96-1",
+      "file": "/logos/clients/omaheke-radio-96-1.webp",
+      "width": 160,
+      "height": 160,
+      "bytes": 12434
+    },
+    {
+      "slug": "omaheke-regional-council",
+      "file": "/logos/clients/omaheke-regional-council.webp",
+      "width": 170,
+      "height": 160,
+      "bytes": 11950
+    },
+    {
+      "slug": "republic-of-namibia-coat-of-arms",
+      "file": "/logos/clients/republic-of-namibia-coat-of-arms.webp",
+      "width": 173,
+      "height": 160,
+      "bytes": 15132
+    },
+    {
+      "slug": "swakop-uranium-cgn",
+      "file": "/logos/clients/swakop-uranium-cgn.webp",
+      "width": 363,
+      "height": 160,
+      "bytes": 22712
+    },
+    {
+      "slug": "team-namibia",
+      "file": "/logos/clients/team-namibia.webp",
+      "width": 253,
+      "height": 160,
+      "bytes": 15766
+    },
+    {
+      "slug": "welwitschia-catering-and-cleaning",
+      "file": "/logos/clients/welwitschia-catering-and-cleaning.webp",
+      "width": 454,
+      "height": 160,
+      "bytes": 21726
+    }
+  ],
+  "og": {
+    "src": "/images/og-image.jpg",
+    "width": 1200,
+    "height": 630,
+    "bytes": 54051
+  }
+}

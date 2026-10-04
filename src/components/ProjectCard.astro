@@ -1,0 +1,19 @@
+---
+interface Props {
+  client: string;
+  work: string;
+  date?: string;
+  service: string;
+  serviceName: string;
+  year?: number;
+}
+const { client, work, date, service, serviceName, year } = Astro.props;
+---
+<article class="project-card" data-service={service} data-year={year ?? ''}>
+  <div class="meta">
+    <span class="chip">{serviceName}</span>
+    <span class="date">{date ?? ''}</span>
+  </div>
+  <h3>{client}</h3>
+  <p class="work">{work}</p>
+</article>

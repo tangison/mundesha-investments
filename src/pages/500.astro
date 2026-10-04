@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Something Went Wrong | Mundesha Investments';
+const description = 'A server error occurred. Please try again or contact Mundesha Investments directly.';
+---
+<Base title={title} description={description} path="/500">
+  <section class="error-page">
+    <div class="container">
+      <p class="code">500</p>
+      <h1 style="font-size:1.5rem">Something went wrong on our side</h1>
+      <p>It is not you, it is us. Try again in a moment, or reach us directly on +264 81 277 7553.</p>
+      <div class="hero-ctas" style="justify-content:center;display:flex">
+        <a class="btn btn-primary" href="/">Back to home</a>
+        <a class="btn btn-outline-dark" href="/contact">Contact page</a>
+      </div>
+    </div>
+  </section>
+</Base>

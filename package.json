@@ -1,0 +1,16 @@
+{
+  "name": "mundesha-investments",
+  "version": "1.0.0",
+  "description": "Mundesha Investment One CC: air conditioning, refrigeration and electrical work across Namibia",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^5.12.0"
+  }
+}

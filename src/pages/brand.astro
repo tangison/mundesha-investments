@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const title = 'Brand Guidelines | Mundesha Investments';
+const description =
+  'Brand tokens, logo variants, typography and usage rules for Mundesha Investment One CC. All values sampled from the supplied artwork.';
+
+const swatches = [
+  { token: '--brand-primary', hex: '#A70202', note: 'Logo red' },
+  { token: '--brand-ink', hex: '#020202', note: 'Wordmark black' },
+  { token: '--brand-gradient-start', hex: '#A60000', note: 'Gradient start' },
+  { token: '--brand-gradient-end', hex: '#510000', note: 'Gradient end' },
+  { token: '--brand-accent', hex: '#DF0000', note: 'Heading accent red' },
+  { token: '--brand-text', hex: '#231F20', note: 'Body text' },
+  { token: '--brand-surface', hex: '#FFFFFF', note: 'Page background' },
+  { token: '--brand-surface-alt', hex: '#D6D5D4', note: 'Panel grey, sampled from profile' }
+];
+---
+<Base title={title} description={description} path="/brand">
+  <section class="page-hero">
+    <div class="container">
+      <h1>BRAND GUIDELINES</h1>
+      <p class="lead">Every value on this page is sampled from the supplied Mundesha artwork. Nothing is invented.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading first="LOGO" second="VARIANTS" />
+      <p class="section-intro">
+        Use the horizontal logo in the header and footer. The stacked logo suits square placements.
+        Light variants sit on dark backgrounds, dark variants on white. Never redraw, recolour or
+        restretch the logo.
+      </p>
+      <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))">
+        <div class="logo-tile">
+          <img src="/logos/mundesha/mundesha-logo-horizontal-light.svg" alt="Horizontal logo, dark variant for white backgrounds" width="238" height="75" loading="lazy" />
+        </div>
+        <div class="logo-tile dark">
+          <img src="/logos/mundesha/mundesha-logo-horizontal-dark.svg" alt="Horizontal logo, light variant for dark backgrounds" width="238" height="75" loading="lazy" />
+        </div>
+        <div class="logo-tile">
+          <img src="/logos/mundesha/mundesha-logo-stacked-light.svg" alt="Stacked logo, dark variant for white backgrounds" width="150" height="100" loading="lazy" />
+        </div>
+        <div class="logo-tile dark">
+          <img src="/logos/mundesha/mundesha-logo-stacked-dark.svg" alt="Stacked logo, light variant for dark backgrounds" width="150" height="100" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading first="COLOUR" second="TOKENS" />
+      <div class="swatch-grid">
+        {swatches.map((s) => (
+          <div class="swatch">
+            <div class="color-chip" style={`background:${s.hex}`} aria-hidden="true"></div>
+            <div class="info">
+              <code>{s.hex}</code>
+              <span>{s.token.replace('--brand-', '')}: {s.note}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="prose" style="margin-top:30px">
+        <h3>Contrast rules</h3>
+        <ul>
+          <li>#A70202 on white passes WCAG AA for body text (about 7.9 to 1).</li>
+          <li>#DF0000 on white passes WCAG AA for body text (about 5.1 to 1).</li>
+          <li>Never use red for small text on charcoal or dark backgrounds. On dark sections use white text and keep red for shapes, rules and large display text.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading first="TYPE" second="SYSTEM" />
+      <div class="prose">
+        <p style="font-family:var(--font-display);font-weight:800;font-size:1.6rem">Montserrat ExtraBold: display and headings</p>
+        <p style="font-family:var(--font-display);font-weight:300;font-size:1.6rem;color:var(--brand-primary)">Montserrat Light: second word in two-tone headings</p>
+        <p>Inter Regular: body copy. Inter SemiBold and Bold: labels, buttons and links.</p>
+        <h3>Two-tone heading pattern</h3>
+        <p>
+          First word bold and dark, second word light and red, with a short dark underline rule.
+          Example: OUR SERVICES. The pattern is carried from the printed profile headings.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading first="RULES" second="OF USE" />
+      <table class="spec-table">
+        <tbody>
+          <tr><th>Brand bar</th><td>4px fixed bar at the extreme top edge, gradient #A60000 to #510000. Zero layout shift.</td></tr>
+          <tr><th>Clear space</th><td>Keep at least the height of the M notch free on all sides of the logo.</td></tr>
+          <tr><th>Minimum sizes</th><td>32px icon, 120px wide horizontal logo.</td></tr>
+          <tr><th>Slashes</th><td>Diagonal red and white slashes are the brand shape. Use them in heroes and section dividers.</td></tr>
+          <tr><th>Photography</th><td>Real job photos carry the proof. Generated accent images are backgrounds only and are never shown as client work.</td></tr>
+          <tr><th>Client logos</th><td>Shown in a uniform 56px height box, greyscale by default, full colour on hover. Never redrawn.</td></tr>
+          <tr><th>Voice</th><td>Plain, direct, trade-confident. No filler phrases, no em dashes.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Base>

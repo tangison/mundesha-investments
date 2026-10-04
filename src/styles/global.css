@@ -193,7 +193,7 @@ p { text-wrap: pretty; }
 .h-two .w2 {
   display: inline; font-family: var(--font-display); font-weight: 300;
   font-size: clamp(1.65rem, 3.6vw, 2.35rem); color: var(--brand-primary);
-  text-transform: uppercase; margin-left: 0.22em;
+  text-transform: uppercase; margin-left: 0.04em;
 }
 .h-two .rule { display: block; width: 58px; height: 4px; background: var(--brand-ink); border-radius: 2px; margin-top: 14px; }
 .h-two.on-dark .w1 { color: #fff; }

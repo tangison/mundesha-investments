@@ -9,6 +9,6 @@ interface Props {
 const { first, second, dark = false, align = 'left' } = Astro.props;
 ---
 <h2 class={`h-two ${dark ? 'on-dark' : ''}`} style={align === 'center' ? 'text-align:center' : ''}>
-  <span class="w1">{first}</span><span class="w2">{second}</span>
+  <span class="w1">{first}</span>{' '}<span class="w2">{second}</span>
   <span class="rule" aria-hidden="true"></span>
 </h2>

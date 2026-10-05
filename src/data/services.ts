@@ -43,19 +43,18 @@ export const SERVICES: ServiceDef[] = [
     blurb: 'Cold rooms, freezer rooms, reefer unit service and commercial fridge maintenance.',
     intro: [
       'Cold rooms, freezer rooms and reefer units keep stock safe and businesses trading. We install new cold and freezer rooms, service reefer units and maintain commercial fridges for retailers and hospitality clients.',
-      'Our team also services industrial laundry machines and mortuary refrigeration, including repair and maintenance work at clinics. Recent work includes a freezer room installation at Gross Barmen Resort and laundry and reefer servicing for Swakop Uranium.'
+      'Our team also repairs and maintains mortuary refrigeration, including repair and maintenance work at clinics. Recent work includes a freezer room installation at Gross Barmen Resort and reefer servicing for Swakop Uranium.'
     ],
     points: [
       'Cold room and freezer room installation',
       'Reefer unit service',
       'Commercial fridge maintenance',
-      'Industrial laundry machine servicing',
       'Mortuary refrigeration repair and service'
     ],
     photos: ['freezer-room-condensing-unit', 'condenser-gauges', 'display-fridge-service'],
     metaTitle: 'Cold Room Installation Namibia | Mundesha Investments',
     metaDescription:
-      'Cold rooms, freezer rooms, reefer unit service and commercial fridge maintenance across Namibia, with laundry machine and mortuary refrigeration service.',
+      'Cold rooms, freezer rooms, reefer unit service and commercial fridge maintenance across Namibia, plus mortuary refrigeration service.',
     serviceType: 'Refrigeration and cold room services'
   },
   {
@@ -168,6 +167,27 @@ export const SERVICES: ServiceDef[] = [
     metaDescription:
       'Supply and delivery of maintenance equipment across Namibia, backed by a three-year mining supply contract with Swakop Uranium.',
     serviceType: 'Supply, delivery and logistics'
+  },
+  {
+    slug: 'maintenance-repairs',
+    name: 'Maintenance and Repairs',
+    shortName: 'Maintenance and Repairs',
+    blurb: 'Laundry machinery, hot water systems, electrical equipment and general building maintenance.',
+    intro: [
+      'We keep equipment and buildings working. Our maintenance teams service and repair industrial laundry machines, hot water systems and electrical equipment, and handle general building maintenance for clients who want one contractor for the job.',
+      'Recent work includes laundry machinery repairs and services for Lady Pohamba Private Hospital in Windhoek, covering washing machines, tumble dryers and roller ironers from Miele Professional, Girbau and Alliance Speed Queen. We also serviced laundry machines and reefer units at the Swakop Uranium mine.'
+    ],
+    points: [
+      'Industrial laundry machinery servicing and repairs',
+      'Hot water systems',
+      'Electrical equipment maintenance',
+      'General building maintenance'
+    ],
+    photos: ['washer-service-technician-vest', 'washer-electrical-repair', 'industrial-washers-service-tools'],
+    metaTitle: 'Maintenance and Repairs Namibia | Mundesha Investments',
+    metaDescription:
+      'Laundry machinery, hot water systems, electrical equipment and general building maintenance across Namibia, with hospital and mining site experience.',
+    serviceType: 'Maintenance and repair services'
   }
 ];
 
@@ -180,5 +200,6 @@ export const SERVICE_ACCENTS: Record<string, { cat: string; file: string }> = {
   cleaning: { cat: 'Brand-Backgrounds', file: '04_white-wall-red-band' },
   'construction-renovation': { cat: 'Trade-Details', file: '05_hand-tools' },
   'catering-events': { cat: 'Namibia-Backdrops', file: '02_dunes-sunrise' },
-  'supply-logistics': { cat: 'Namibia-Backdrops', file: '05_bushveld-road' }
+  'supply-logistics': { cat: 'Namibia-Backdrops', file: '05_bushveld-road' },
+  'maintenance-repairs': { cat: 'Trade-Details', file: '02_gauge-set' }
 };

@@ -1,8 +1,19 @@
 ---
 import { NAV } from '../data/site';
+import { SERVICES } from '../data/services';
+import images from '../data/images.json';
 
 const current = Astro.url.pathname;
 const isActive = (href: string) => current === href || (href !== '/' && current.startsWith(href + '/'));
+const tiles = images.tiles as Record<string, { src: string; width: number; height: number }>;
+const drawerLinks = [
+  { href: '/projects', label: 'Projects' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/team', label: 'Team' },
+  { href: '/about', label: 'About us' },
+  { href: '/clients', label: 'Clients' },
+  { href: '/contact', label: 'Contact' }
+];
 ---
 <header class="site-header">
   <div class="container header-inner">
@@ -15,39 +26,94 @@ const isActive = (href: string) => current === href || (href !== '/' && current.
         style="height:40px;width:auto"
       />
     </a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
-      <svg class="icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
-    <nav class="nav" id="site-nav" aria-label="Main">
+    <nav class="nav" aria-label="Main">
       {NAV.map((item) => (
         <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
       ))}
       <a class="btn btn-primary" href="/contact">Request a quote</a>
     </nav>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-drawer" aria-label="Open menu">
+      <svg class="icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
   </div>
 </header>
 
+<div class="drawer-backdrop" data-drawer-close hidden></div>
+<nav class="drawer" id="site-drawer" aria-label="Site menu" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="drawer-head">
+    <img
+      src="/logos/mundesha/mundesha-logo-horizontal-light.svg"
+      alt="Mundesha Investments"
+      width="238"
+      height="75"
+      style="height:34px;width:auto"
+    />
+    <button class="drawer-close" type="button" data-drawer-close aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <p class="drawer-label">Services</p>
+  <ul class="drawer-services">
+    {SERVICES.map((s) => (
+      <li>
+        <a href={`/services/${s.slug}`}>
+          <img
+            src={tiles[s.slug]?.src}
+            alt=""
+            aria-hidden="true"
+            width="60"
+            height="45"
+            loading="lazy"
+            decoding="async"
+          />
+          <span>{s.shortName}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+  <p class="drawer-label">Company</p>
+  <ul class="drawer-links">
+    {drawerLinks.map((item) => (
+      <li><a href={item.href}>{item.label}</a></li>
+    ))}
+  </ul>
+
+  <a class="btn btn-primary drawer-cta" href="/contact">Request a quote</a>
+</nav>
+
 <script>
   const btn = document.querySelector<HTMLButtonElement>('.menu-btn');
-  const nav = document.getElementById('site-nav');
-  if (btn && nav) {
-    const close = () => {
-      nav.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
-      btn.setAttribute('aria-label', 'Open menu');
-    };
-    btn.addEventListener('click', () => {
-      const open = nav.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(open));
-      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  const drawer = document.getElementById('site-drawer');
+  const backdrop = document.querySelector<HTMLElement>('.drawer-backdrop');
+
+  function setDrawer(open: boolean) {
+    if (!btn || !drawer || !backdrop) return;
+    drawer.classList.toggle('open', open);
+    backdrop.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    drawer.setAttribute('aria-hidden', String(!open));
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) {
+      const first = drawer.querySelector<HTMLAnchorElement>('a');
+      first?.focus();
+    }
+  }
+
+  if (btn && drawer && backdrop) {
+    btn.addEventListener('click', () => setDrawer(!drawer.classList.contains('open')));
+    drawer.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) setDrawer(false);
     });
-    nav.addEventListener('click', (e) => {
-      if ((e.target as HTMLElement).closest('a')) close();
-    });
+    for (const el of document.querySelectorAll('[data-drawer-close]')) {
+      el.addEventListener('click', () => setDrawer(false));
+    }
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && nav.classList.contains('open')) {
-        close();
+      if (e.key === 'Escape' && drawer.classList.contains('open')) {
+        setDrawer(false);
         btn.focus();
       }
     });

@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABand from '../components/CTABand.astro';
+import { SITE, WORKFORCE } from '../data/site';
+import { GALLERY } from '../data/gallery';
+import organogramRaw from '../data/organogram-roles-only.svg?raw';
+
+const team = GALLERY.find((g) => g.id === 'team-workwear-smiling');
+const second = GALLERY.find((g) => g.id === 'team-workwear-serious');
+
+const title = 'Our Team | Mundesha Investments';
+const description =
+  'Meet the Mundesha team: an owner-led trade company with technicians, artisans, welders, bricklayers, plumbers and safety officers working across Namibia.';
+
+const structure = [
+  { head: 'Managing Director', body: 'Elia Hangeige Mudesha (Owner)' },
+  { head: 'Safety', body: 'Site safety officers and briefings' },
+  { head: 'Technical Team', body: 'Electrical technician and technicians' },
+  { head: 'General Workforce', body: 'General workers deployed per job' },
+  {
+    head: 'Specialist Trades',
+    body: 'Artisans, welders, boilermakers, fitters and turners, bricklayers, plumbers, electricians, consultants and engineering services'
+  }
+];
+---
+<Base title={title} description={description} path="/team">
+  <section class="page-hero">
+    <div class="container">
+      <h1>OUR TEAM</h1>
+      <p class="lead">
+        An owner-led trade company. {SITE.founder} runs the team that shows up on your site.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div style="display:grid;gap:44px;grid-template-columns:1fr;align-items:center" class="team-grid">
+        <div class="prose">
+          <SectionHeading first="WHO WE" second="ARE" />
+          <p>
+            Mundesha Investment One CC is led by its owner, Mr. Elia Hangeige Mudesha, who brings
+            over 20 years of hands-on experience in electrical work, air conditioning and
+            refrigeration. That experience shapes every job: units are sized properly, cables run
+            cleanly and sites are left tidy.
+          </p>
+          <p>
+            Our crews are deployed to site as the work requires. A job can pair a safety officer
+            and electricians for a board upgrade, or bricklayers, plumbers and general workers for
+            a renovation. All six staff documents list Mr. Mudesha as supervisor, so every team on
+            your site answers to one person.
+          </p>
+        </div>
+        <figure style="margin:0">
+          {team && (
+            <img
+              class="team-photo"
+              src={team.file}
+              alt={team.alt}
+              width={team.width}
+              height={team.height}
+              loading="lazy"
+              decoding="async"
+            />
+          )}
+          <figcaption style="font-size:0.85rem;color:var(--muted);padding-top:10px">
+            {team?.caption}
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeading first="HOW WE" second="ARE STRUCTURED" />
+      <p class="section-intro">
+        One reporting line, from the managing director to the workers on your site.
+      </p>
+      <div class="organogram" role="img" aria-label="Company structure: Managing Director Elia Hangeige Mudesha at the top, with branches for Safety, the Technical Team, the General Workforce and Specialist Trades.">
+        <Fragment set:html={organogramRaw} />
+      </div>
+      <ul class="sr-only">
+        {structure.map((s) => (
+          <li>{s.head}: {s.body}</li>
+        ))}
+      </ul>
+
+      <div class="value-grid" style="margin-top:30px">
+        {structure.map((s) => (
+          <div class="value-card">
+            <h3>{s.head}</h3>
+            <p>{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <SectionHeading first="TRADES ON" second="CALL" />
+      <p class="section-intro">
+        A full trade team, deployed to site as the job requires.
+      </p>
+      <ul class="tag-cloud">
+        {WORKFORCE.map((w) => <li class="tag">{w}</li>)}
+      </ul>
+      {second && (
+        <figure style="margin:30px 0 0">
+          <img
+            class="team-photo"
+            src={second.file}
+            alt={second.alt}
+            width={second.width}
+            height={second.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+      )}
+    </div>
+  </section>
+
+  <style>
+    @media (min-width: 860px) {
+      .team-grid { grid-template-columns: 1.15fr 0.85fr !important; }
+    }
+  </style>
+
+  <CTABand />
+</Base>

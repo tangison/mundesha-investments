@@ -6,10 +6,22 @@ interface Props {
   service: string;
   serviceName: string;
   year?: number;
+  photo?: { src: string; alt: string; width: number; height: number };
 }
-const { client, work, date, service, serviceName, year } = Astro.props;
+const { client, work, date, service, serviceName, year, photo } = Astro.props;
 ---
 <article class="project-card" data-service={service} data-year={year ?? ''}>
+  {photo && (
+    <img
+      src={photo.src}
+      alt={photo.alt}
+      width={photo.width}
+      height={photo.height}
+      loading="lazy"
+      decoding="async"
+      style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"
+    />
+  )}
   <div class="meta">
     <span class="chip">{serviceName}</span>
     <span class="date">{date ?? ''}</span>

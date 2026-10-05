@@ -8,6 +8,8 @@ export interface Project {
   service: string;
   /** Year bucket used by the filter. Undefined for undated entries. */
   year?: number;
+  /** Real site photo from the client gallery, where one is tied to the job. */
+  photo?: { src: string; alt: string; width: number; height: number };
 }
 
 const p = (client: string, work: string, date: string | null, service: string, sort: number): Project => ({
@@ -19,8 +21,22 @@ const p = (client: string, work: string, date: string | null, service: string, s
   ...(date ? { year: Math.floor(sort / 100) } : {})
 });
 
+const SWAKOP_SHOWER_PHOTO = {
+  src: '/images/gallery/white-prefab-building-new-pipework.webp',
+  alt: 'Renovated shower block: white prefabricated building with painted walls and new drainage pipework',
+  width: 1280,
+  height: 960
+};
+
 export const PROJECTS: Project[] = [
   p('Swakop Uranium', 'Servicing and maintenance of laundry machine and reefer units', 'Nov 2025', 'refrigeration', 202511),
+  {
+    ...p('Swakop Uranium', 'Renovation of shower block (coated floors, drainage pipework) and manhole', null, 'construction-renovation', 1),
+    photo: SWAKOP_SHOWER_PHOTO
+  },
+  {
+    ...p('Lady Pohamba Private Hospital', 'Repairs and services on laundry machinery: washing machines, tumble dryers and roller ironers', 'Jun 2025', 'maintenance-repairs', 202506)
+  },
   p('Epako Clinic, Gobabis', 'Supply and installation of air conditioners and water cooler', 'Feb 2025', 'air-conditioning', 202502),
   p('Da Palm Secondary School, Otjimbingwe', 'Construction of water tank stand', 'Jan 2025', 'construction-renovation', 202501),
   p('Ministry of Health and Social Services', 'Supply and installation of air conditioner and underground electrical cable, Onandjokwe Intermediate Hospital', 'May 2024', 'electrical-works', 202405),

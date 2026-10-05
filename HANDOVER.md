@@ -3,12 +3,26 @@
 Built by Tangison Studio for Mundesha Investment One CC (trading as Mundesha Investments).
 Stack: Astro 5 (static output) + TypeScript + plain CSS custom properties. Hosting: Vercel. Repo: GitHub.
 
+## 0. V3 update (2026-10-05, from docs/09-v3-updates.md + second filebin kit)
+
+- 8 services: added `/services/maintenance-repairs` (laundry machinery, hot water systems, electrical equipment, general building maintenance). Laundry machinery servicing moved out of the refrigeration page into this line.
+- New hero headline per v3: "Technical, construction and support services across Namibia". Home meta title updated to match.
+- Home: 8 equal image tiles, featured projects, ON SITE gallery strip linking to `/gallery`.
+- New routes: `/gallery` (23 real photos, filterable: construction, air conditioning, equipment maintenance, team, site visits) and `/team` (inline roles-only organogram + structure cards + trades list). Sitemap includes both.
+- New projects: Swakop Uranium shower block and manhole renovation (undated, has real site photo on the project card) and Lady Pohamba Private Hospital laundry machinery (Jun 2025).
+- Logos replaced with the v3 re-traced SVGs (fixed D counter). Favicon suite regenerated from the new icon. Header logo 7.9 KB.
+- Mobile menu is now an off-canvas drawer with a photo thumbnail per service.
+- Footer minimised: logo, tagline, three quick contact pills, Services and Company links collapsed into details dropdowns, slim copyright bar with the Tangison Studio credit.
+- Pending client items from v3: Lady Pohamba testimonial card (need hospital permission before showing name/logo), registration number CC/2016/12742 (show in footer after client confirms), consent confirmation for publishing team and site-visit photos, organogram with-names variant (only after written consent per person), "medically cleared for Swakop Uranium / Husab Mine" proof point (only if certificates confirmed current).
+- Spelling resolved by v3 documents: the owner is "Elia Hangeige Mudesha", the company "Mundesha Investment One CC". No longer an open question.
+- Private documents rule honoured: no staff IDs, phone numbers, dates of birth or medical data anywhere on the site or in the repo.
+
 ## 1. What was delivered
 
-- 18 routes built and verified: `/`, `/about`, `/services`, 7 service landing pages, `/projects`, `/clients`, `/contact`, `/brand`, `/privacy-policy`, `/terms`, `/404`, `/500`
+- 21 routes built and verified: `/`, `/about`, `/team`, `/services`, 8 service landing pages, `/projects`, `/clients`, `/gallery`, `/contact`, `/brand`, `/privacy-policy`, `/terms`, `/404`, `/500`
 - `/api/quote` serverless function: server-side validation, honeypot, time trap, optional email delivery via Resend
 - SEO: robots.txt, sitemap.xml (absolute canonical URLs), JSON-LD LocalBusiness + per-service Service schema, OG/Twitter cards, favicon suite (ico/svg/32/180/192/512/manifest)
-- Assets: SVGO-optimised logos (header logo 15.5 KB), hero WebP 119 KB, all photos WebP with explicit dimensions, 13 client logos as 160px-tall WebP for the 56px logo wall
+- Assets: SVGO-optimised logos (v3 re-traced header logo 7.9 KB), hero WebP 119 KB, all photos WebP with explicit dimensions, 23 real gallery photos, 8 service tiles, 13 client logos as 160px-tall WebP for the 56px logo wall
 - Performance: home page HTML+CSS+JS+hero = 154 KB before fonts (Google Fonts, swapped). Budget 500 KB respected with headroom.
 - Service photos round 2 (2026-10-05): the client added 7 composite grids to the filebin. They were cropped into 42 cells (scripts/crop_composites.py, automatic gutter detection), 18 selections encoded to WebP (scripts/add_new_photos.mjs) and placed on service pages and /about.
 
@@ -24,7 +38,7 @@ Stack: Astro 5 (static output) + TypeScript + plain CSS custom properties. Hosti
 | Question | Default applied |
 |---|---|
 | Master logo layout | Horizontal in header/footer (per brief default). Stacked shown on /brand. |
-| Surname spelling | "Mudesha" as printed in the profile. Company stays "Mundesha". Needs client confirmation. |
+| Surname spelling | RESOLVED by v3 documents: owner "Mudesha", company "Mundesha". |
 | Domain | SITE_URL env var. Fallback https://example.invalid. No guessed domain anywhere. |
 | Address | "Windhoek, Namibia" only. |
 | NORED date | Shown without a date (source said 2003, before founding). |

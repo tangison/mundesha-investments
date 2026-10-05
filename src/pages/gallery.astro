@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABand from '../components/CTABand.astro';
+import { GALLERY, GALLERY_FILTERS } from '../data/gallery';
+
+const title = 'Gallery | Mundesha Investments';
+const description =
+  'Real photos from Mundesha job sites across Namibia: tank stands, steel towers, air conditioning installs, laundry machinery and our team at work.';
+
+const PROJECT_LABELS: Record<string, string> = {
+  'swakop-uranium-shower-block-and-manhole-renovation': 'Swakop Uranium'
+};
+---
+<Base title={title} description={description} path="/gallery">
+  <section class="page-hero">
+    <div class="container">
+      <h1>GALLERY</h1>
+      <p class="lead">
+        Straight from our sites around Namibia. Captions describe exactly what each photo shows.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="gallery">
+    <div class="container">
+      <SectionHeading first="REAL" second="WORK" />
+      <p class="section-intro">
+        These are photos of our own work and teams, supplied by Mundesha. Filter by trade.
+      </p>
+
+      <div class="filters" role="group" aria-label="Filter gallery">
+        {GALLERY_FILTERS.map((f, i) => (
+          <button class="filter-chip" type="button" data-filter={f.key} aria-pressed={i === 0 ? 'true' : 'false'}>
+            {f.label}
+          </button>
+        ))}
+      </div>
+      <p id="gallery-count" style="font-size:0.9rem;color:var(--muted);margin-bottom:20px" role="status"></p>
+
+      <div class="gallery-grid" id="gallery-grid">
+        {GALLERY.map((g) => (
+          <figure class="gallery-item" data-filter={g.service}>
+            <img
+              src={g.file}
+              alt={g.alt}
+              width={g.width}
+              height={g.height}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>
+              {g.project && (
+                <span class="gallery-chip">{PROJECT_LABELS[g.project] ?? 'Site project'}</span>
+              )}
+              {g.caption}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>
+
+<script>
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('#gallery .filter-chip'));
+  const items = Array.from(document.querySelectorAll<HTMLElement>('#gallery-grid .gallery-item'));
+  const count = document.getElementById('gallery-count');
+  let active = 'all';
+
+  function apply() {
+    let shown = 0;
+    for (const item of items) {
+      const ok = active === 'all' || item.dataset.filter === active;
+      item.style.display = ok ? '' : 'none';
+      if (ok) shown += 1;
+    }
+    if (count) count.textContent = `Showing ${shown} of ${items.length} photos`;
+    for (const chip of chips) {
+      chip.setAttribute('aria-pressed', String(chip.dataset.filter === active));
+    }
+  }
+
+  for (const chip of chips) {
+    chip.addEventListener('click', () => {
+      active = chip.dataset.filter ?? 'all';
+      apply();
+    });
+  }
+  apply();
+</script>

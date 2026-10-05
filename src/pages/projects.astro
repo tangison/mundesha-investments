@@ -49,6 +49,7 @@ const serviceName = (slug: string) => SERVICE_BY_SLUG.get(slug)?.shortName ?? sl
             year={pr.year}
             service={pr.service}
             serviceName={serviceName(pr.service)}
+            photo={pr.photo}
           />
         ))}
       </div>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4 -4 531 264" font-family="Helvetica, Arial, Liberation Sans, sans-serif">
+<line x1="261.5" y1="58" x2="261.5" y2="82" stroke="#8C8C8C" stroke-width="1"/>
+<line x1="62.0" y1="82" x2="461.0" y2="82" stroke="#8C8C8C" stroke-width="1"/>
+<line x1="62.0" y1="82" x2="62.0" y2="104" stroke="#8C8C8C" stroke-width="1"/>
+<line x1="195.0" y1="82" x2="195.0" y2="104" stroke="#8C8C8C" stroke-width="1"/>
+<line x1="328.0" y1="82" x2="328.0" y2="104" stroke="#8C8C8C" stroke-width="1"/>
+<line x1="461.0" y1="82" x2="461.0" y2="104" stroke="#8C8C8C" stroke-width="1" stroke-dasharray="3 2"/>
+<rect x="141.5" y="0" width="240" height="58" rx="4" fill="#A70202" stroke="none" stroke-width="0.8"/>
+<text x="261.5" y="16.4" font-size="8" font-weight="700" text-anchor="middle" fill="#FFFFFF">MANAGING DIRECTOR</text>
+<text x="261.5" y="33.2" font-size="14" font-weight="700" text-anchor="middle" fill="#FFFFFF">Elia H. Mudesha</text>
+<text x="261.5" y="46.6" font-size="8.5" font-weight="400" text-anchor="middle" fill="#FFFFFF">Owner</text>
+<rect x="0" y="104" width="124" height="30" rx="4" fill="#231F20" stroke="none" stroke-width="0.8"/>
+<text x="62.0" y="121.4" font-size="7.5" font-weight="700" text-anchor="middle" fill="#FFFFFF">SAFETY</text>
+<rect x="0" y="134" width="124" height="118" rx="0" fill="#F2F0F1" stroke="#8C8C8C" stroke-width="0.8"/>
+<text x="62.0" y="151.0" font-size="9" font-weight="700" text-anchor="middle" fill="#A70202">Safety Officer</text>
+<rect x="133" y="104" width="124" height="30" rx="4" fill="#231F20" stroke="none" stroke-width="0.8"/>
+<text x="195.0" y="121.4" font-size="7.5" font-weight="700" text-anchor="middle" fill="#FFFFFF">TECHNICAL TEAM</text>
+<rect x="133" y="134" width="124" height="118" rx="0" fill="#F2F0F1" stroke="#8C8C8C" stroke-width="0.8"/>
+<text x="195.0" y="151.0" font-size="9" font-weight="700" text-anchor="middle" fill="#A70202">Electrical Technician</text>
+<text x="195.0" y="168.6" font-size="9" font-weight="700" text-anchor="middle" fill="#A70202">Technicians</text>
+<rect x="266" y="104" width="124" height="30" rx="4" fill="#231F20" stroke="none" stroke-width="0.8"/>
+<text x="328.0" y="121.4" font-size="7.5" font-weight="700" text-anchor="middle" fill="#FFFFFF">GENERAL WORKFORCE</text>
+<rect x="266" y="134" width="124" height="118" rx="0" fill="#F2F0F1" stroke="#8C8C8C" stroke-width="0.8"/>
+<text x="328.0" y="151.0" font-size="9" font-weight="700" text-anchor="middle" fill="#A70202">General Workers</text>
+<rect x="399" y="104" width="124" height="30" rx="4" fill="#231F20" stroke="none" stroke-width="0.8"/>
+<text x="461.0" y="121.4" font-size="7.5" font-weight="700" text-anchor="middle" fill="#FFFFFF">SPECIALIST TRADES</text>
+<rect x="399" y="134" width="124" height="118" rx="0" fill="#F2F0F1" stroke="#8C8C8C" stroke-width="0.8" stroke-dasharray="3 2"/>
+<text x="461.0" y="150.0" font-size="8" font-weight="400" text-anchor="middle" fill="#231F20">Artisans</text>
+<text x="461.0" y="160.8" font-size="8" font-weight="400" text-anchor="middle" fill="#231F20">Welders</text>
+<text x="461.0" y="171.6" font-size="8" font-weight="400" text-anchor="middle" fill="#231F20">Boilermakers</text>
+<text x="461.0" y="182.4" font-size="8" font-weight="400" text-anchor="middle" fill="#231F20">Fitters and Turners</text>
+<text x="461.0" y="193.2" font-size="8" font-weight="400" text-anchor="middle" fill="#231F20">Bricklayers</text>
+<text x="461.0" y="204.0" font-size="8" font-weight="400" text-anchor="middle" fill="#231F20">Plumbers</text>
+<text x="461.0" y="214.8" font-size="8" font-weight="400" text-anchor="middle" fill="#231F20">Electricians</text>
+<text x="461.0" y="225.6" font-size="8" font-weight="400" text-anchor="middle" fill="#231F20">Consultants</text>
+<text x="461.0" y="236.4" font-size="8" font-weight="400" text-anchor="middle" fill="#231F20">Engineering services</text>
+</svg>

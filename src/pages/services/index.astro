@@ -3,52 +3,49 @@ import Base from '../../layouts/Base.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import CTABand from '../../components/CTABand.astro';
 import { SERVICES } from '../../data/services';
-import { SERVICE_ACCENTS } from '../../data/services';
 import images from '../../data/images.json';
 
 const title = 'Our Services | Mundesha Investments';
 const description =
-  'Seven trade services across Namibia: air conditioning, refrigeration, electrical, cleaning, construction, catering and supply. One team, one call.';
+  'Eight trade services across Namibia: air conditioning, refrigeration, electrical, cleaning, construction, catering, supply and maintenance. One team, one call.';
 
-function accentSrc(dotPath?: string) {
-  if (!dotPath) return null;
-  const [cat, file] = dotPath.split('.');
-  return (images.accents as Record<string, Record<string, { src: string; width: number; height: number }>>)[cat]?.[file] ?? null;
-}
+const tiles = images.tiles as Record<string, { src: string; width: number; height: number }>;
 ---
 <Base title={title} description={description} path="/services">
   <section class="page-hero">
     <div class="container">
       <h1>OUR SERVICES</h1>
-      <p class="lead">Seven trades, one contractor. Every service comes with the same promise: quality of work and good value for money.</p>
+      <p class="lead">Eight trades, one contractor. Every service comes with the same promise: quality of work and good value for money.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <SectionHeading first="WHAT WE" second="DO" />
-      <div class="tiles" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr))">
+      <div class="tiles" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
         {SERVICES.map((s) => {
-          const art = accentSrc(SERVICE_ACCENTS[s.slug] ? `${SERVICE_ACCENTS[s.slug].cat}.${SERVICE_ACCENTS[s.slug].file}` : s.accent);
+          const tile = tiles[s.slug];
           return (
             <article class="service-card">
-              {art && (
-                <div class="svc-art" style="height:132px;margin:-26px -24px 14px">
+              {tile && (
+                <a href={`/services/${s.slug}`} aria-label={`Learn more about ${s.name}`} style="display:block">
                   <img
-                    src={art.src}
+                    class="tile-img"
+                    src={tile.src}
                     alt=""
                     aria-hidden="true"
-                    width={art.width}
-                    height={art.height}
+                    width={tile.width}
+                    height={tile.height}
                     loading="lazy"
                     decoding="async"
-                    style="border-radius:14px 14px 0 0"
                   />
-                </div>
+                </a>
               )}
-              <h3>{s.name}</h3>
-              <p>{s.blurb}</p>
-              <a class="more" href={`/services/${s.slug}`}>Learn more</a>
+              <div class="tile-body">
+                <h3>{s.name}</h3>
+                <p>{s.blurb}</p>
+                <a class="more" href={`/services/${s.slug}`}>Learn more</a>
+              </div>
             </article>
           );
         })}

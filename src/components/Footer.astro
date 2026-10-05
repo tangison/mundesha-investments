@@ -3,63 +3,58 @@ import { SITE, STUDIO_CREDIT } from '../data/site';
 import { SERVICES } from '../data/services';
 
 const year = new Date().getFullYear();
+const companyLinks = [
+  { href: '/projects', label: 'Projects' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/team', label: 'Team' },
+  { href: '/clients', label: 'Clients' },
+  { href: '/about', label: 'About us' },
+  { href: '/brand', label: 'Brand guidelines' },
+  { href: '/privacy-policy', label: 'Privacy policy' },
+  { href: '/terms', label: 'Terms of service' },
+  { href: SITE.instagram.url, label: `Instagram: ${SITE.instagram.handle}`, external: true }
+];
 ---
 <footer class="site-footer">
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img
-          src="/logos/mundesha/mundesha-logo-horizontal-dark.svg"
-          alt="Mundesha Investments"
-          width="238"
-          height="75"
-          loading="lazy"
-          style="height:44px;width:auto"
-        />
-        <p>
-          Air conditioning, refrigeration, electrical and related trade services,
-          delivered across Namibia since {SITE.founded}.
-        </p>
-        <p class="footer-tagline">Your needs, <span>Our Business</span></p>
+    <div class="footer-top">
+      <img
+        src="/logos/mundesha/mundesha-logo-horizontal-dark.svg"
+        alt="Mundesha Investments"
+        width="238"
+        height="75"
+        loading="lazy"
+        style="height:44px;width:auto"
+      />
+      <p class="footer-tagline">Your needs, <span>Our Business</span></p>
+      <div class="footer-quick">
+        <a href={`tel:${SITE.phones[0].tel}`}>{SITE.phones[0].display}</a>
+        <a href={SITE.whatsapp} rel="noopener">WhatsApp</a>
+        <a href={`mailto:${SITE.email}`}>Email</a>
       </div>
+    </div>
 
-      <div>
-        <h3>Contact</h3>
-        <ul class="footer-contact">
-          {SITE.phones.map((phone) => (
-            <li><a href={`tel:${phone.tel}`}>{phone.display}</a></li>
-          ))}
-          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
-          <li><a href={SITE.whatsapp} rel="noopener">WhatsApp us</a></li>
-          <li><a href={SITE.instagram.url} rel="noopener">Instagram: {SITE.instagram.handle}</a></li>
-          <li><span style="color:rgba(255,255,255,0.82);font-size:0.93rem">{SITE.address}</span></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3>Services</h3>
+    <div class="footer-drop">
+      <details>
+        <summary>Services</summary>
         <ul>
           {SERVICES.map((s) => (
             <li><a href={`/services/${s.slug}`}>{s.name}</a></li>
           ))}
         </ul>
-      </div>
-
-      <div>
-        <h3>Company</h3>
+      </details>
+      <details>
+        <summary>Company</summary>
         <ul>
-          <li><a href="/projects">Projects</a></li>
-          <li><a href="/clients">Clients</a></li>
-          <li><a href="/about">About us</a></li>
-          <li><a href="/brand">Brand guidelines</a></li>
-          <li><a href="/privacy-policy">Privacy policy</a></li>
-          <li><a href="/terms">Terms of service</a></li>
+          {companyLinks.map((l) => (
+            <li><a href={l.href} {...('external' in l ? { rel: 'noopener' } : {})}>{l.label}</a></li>
+          ))}
         </ul>
-      </div>
+      </details>
     </div>
 
     <div class="footer-bottom">
-      <span>&copy; {year} {SITE.legalName}. All rights reserved.</span>
+      <span>&copy; {year} {SITE.legalName}. {SITE.address}.</span>
       <span class="credit">Made by <a href={STUDIO_CREDIT.url} rel="noopener">Tangison Studio</a></span>
     </div>
   </div>

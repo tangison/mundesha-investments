@@ -2,11 +2,12 @@
 import Base from '../layouts/Base.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CTABand from '../components/CTABand.astro';
-import { SITE, WORKFORCE } from '../data/site';
+import { SITE } from '../data/site';
+import { GALLERY } from '../data/gallery';
 import images from '../data/images.json';
 
 const owner = images.owner;
-const team = images.photos['team-technicians'];
+const teamPhoto = GALLERY.find((g) => g.id === 'team-workwear-smiling')!;
 const grassland = images.accents['Namibia-Backdrops']['01_omaheke-grassland'];
 
 const title = 'About Us | Mundesha Investments';
@@ -99,26 +100,44 @@ const description =
 
   <section class="section">
     <div class="container">
-      <SectionHeading first="OUR" second="WORKFORCE" />
+      <SectionHeading first="OUR" second="TEAM" />
       <p class="section-intro">
-        A full trade team, deployed to site as the job requires.
+        An owner-led trade company, deployed to site as the job requires.
       </p>
-      <figure class="svc-art" style="margin:0 0 22px">
-        <img
-          src={team.src}
-          alt="Three Mundesha technicians walking to site with their toolboxes"
-          width={team.width}
-          height={team.height}
-          loading="lazy"
-          decoding="async"
-          style="width:100%;height:auto"
-        />
-      </figure>
-      <ul class="tag-cloud">
-        {WORKFORCE.map((w) => <li class="tag">{w}</li>)}
-      </ul>
+      <div style="display:grid;gap:36px;grid-template-columns:1fr;align-items:center" class="about-team-grid">
+        <figure class="svc-art" style="margin:0">
+          <img
+            src={teamPhoto.file}
+            alt={teamPhoto.alt}
+            width={teamPhoto.width}
+            height={teamPhoto.height}
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:auto"
+          />
+          <figcaption style="font-size:0.78rem;color:var(--muted);padding:10px 14px;background:#fff">
+            {teamPhoto.caption}
+          </figcaption>
+        </figure>
+        <div class="prose">
+          <p>
+            Every Mundesha crew answers to one person: the owner. Technicians, artisans, welders,
+            bricklayers, plumbers, electricians and safety officers are deployed to site as the
+            job requires, under one reporting line.
+          </p>
+          <p>
+            <a class="btn btn-outline-red" href="/team">Meet the team</a>
+          </p>
+        </div>
+      </div>
     </div>
   </section>
+
+  <style>
+    @media (min-width: 860px) {
+      .about-team-grid { grid-template-columns: 1.15fr 0.85fr !important; }
+    }
+  </style>
 
   <CTABand />
 </Base>

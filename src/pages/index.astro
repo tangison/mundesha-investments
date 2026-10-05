@@ -7,14 +7,25 @@ import CTABand from '../components/CTABand.astro';
 import { SERVICES, SERVICE_BY_SLUG } from '../data/services';
 import { FEATURED } from '../data/projects';
 import { SITE, REGIONS } from '../data/site';
+import { GALLERY } from '../data/gallery';
 import images from '../data/images.json';
 
 const hero = images.hero;
 const showLogos = process.env.SHOW_CLIENT_LOGOS !== 'false';
+const tiles = images.tiles as Record<string, { src: string; width: number; height: number }>;
+const stripIds = [
+  'split-ac-installation-ladder',
+  'water-tank-stand-two-tanks-golden-hour',
+  'washer-service-technician-vest',
+  'steel-tower-fabrication-sunset',
+  'team-workwear-smiling',
+  'white-prefab-building-new-pipework'
+];
+const strip = stripIds.map((id) => GALLERY.find((g) => g.id === id)!);
 
-const title = 'Air Conditioning and Refrigeration | Mundesha Investments';
+const title = 'Trade Services Across Namibia | Mundesha Investments';
 const description =
-  'Air conditioning, refrigeration, electrical and trade services for government, mining, retail and hospitality across Namibia since 2016. Request a quote.';
+  'Technical, construction and support services for government, mining, retail and hospitality across Namibia since 2016. Request a quote.';
 ---
 <Base title={title} description={description} path="/">
   <section class="hero">
@@ -34,7 +45,7 @@ const description =
       <div class="hero-content">
         <p class="hero-kicker">Since {SITE.founded} | {SITE.address}</p>
         <h1>
-          Air conditioning, refrigeration and electrical work across <span class="accent">Namibia</span>
+          Technical, construction and support services across <span class="accent">Namibia</span>
         </h1>
         <p class="hero-sub">
           Mundesha Investments has served government, mining, retail and hospitality clients since 2016.
@@ -53,14 +64,28 @@ const description =
     <div class="container">
       <div id="services-heading"><SectionHeading first="OUR" second="SERVICES" /></div>
       <p class="section-intro">
-        Seven trade services under one roof. One number to call, one team that shows up.
+        Eight trade services under one roof. One number to call, one team that shows up.
       </p>
       <div class="tiles">
         {SERVICES.map((s) => (
           <article class="service-card">
-            <h3>{s.shortName}</h3>
-            <p>{s.blurb}</p>
-            <a class="more" href={`/services/${s.slug}`} aria-label={`Learn more about ${s.name}`}>Learn more</a>
+            <a href={`/services/${s.slug}`} aria-label={`Learn more about ${s.name}`} style="display:block;color:inherit;text-decoration:none">
+              <img
+                class="tile-img"
+                src={tiles[s.slug]?.src}
+                alt=""
+                aria-hidden="true"
+                width={tiles[s.slug]?.width}
+                height={tiles[s.slug]?.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <div class="tile-body">
+              <h3>{s.shortName}</h3>
+              <p>{s.blurb}</p>
+              <a class="more" href={`/services/${s.slug}`} aria-label={`Learn more about ${s.name}`}>Learn more</a>
+            </div>
           </article>
         ))}
       </div>
@@ -109,6 +134,30 @@ const description =
             service={pr.service}
             serviceName={SERVICE_BY_SLUG.get(pr.service)?.shortName ?? pr.service}
           />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="gallery-heading">
+    <div class="container">
+      <div id="gallery-heading"><SectionHeading first="ON" second="SITE" /></div>
+      <p class="section-intro">
+        Straight from our jobs around Namibia. See the full set in the <a href="/gallery" style="color:var(--brand-primary);font-weight:600">gallery</a>.
+      </p>
+      <div class="gallery-grid">
+        {strip.map((g) => (
+          <a class="gallery-item" href="/gallery" style="text-decoration:none">
+            <img
+              src={g.file}
+              alt={g.alt}
+              width={g.width}
+              height={g.height}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption style="padding:12px 14px 14px;font-size:0.85rem;color:var(--muted)">{g.caption}</figcaption>
+          </a>
         ))}
       </div>
     </div>

@@ -3,9 +3,11 @@ import { SERVICES } from '../data/services';
 const staticRoutes = [
   '',
   'about',
+  'team',
   'services',
   'projects',
   'clients',
+  'gallery',
   'contact',
   'brand',
   'privacy-policy',

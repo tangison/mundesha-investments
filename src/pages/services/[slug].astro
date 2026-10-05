@@ -24,17 +24,50 @@ const { service } = Astro.props;
 const PHOTO_ALT: Record<string, string> = {
   'split-ac-installed-clinic': 'Split air conditioning unit installed on a clinic wall',
   'samsung-split-units-install': 'Technician installing split air conditioning units',
+  'ac-office-install': 'Technician drilling a split air conditioner bracket in an office',
+  'ac-manifold-service': 'Technician checking condenser pressures with manifold gauges',
+  'ac-rural-condensers': 'Air conditioner condenser units mounted on a building wall',
   'freezer-room-condensing-unit': 'Condensing unit on an industrial freezer room',
   'reefer-unit-service': 'Technician servicing a reefer unit',
+  'condenser-gauges': 'Technician servicing a condenser unit with manifold gauges',
+  'display-fridge-service': 'Technician servicing a glass door display fridge',
   'distribution-board': 'Distribution board wiring during installation',
   'electrician-wiring-panel': 'Electrician wiring an electrical panel',
+  'db-wiring': 'Electrician wiring a distribution board',
+  'cable-trench': 'Team laying underground cable in a trench',
+  'multimeter-test': 'Electrician testing a distribution board with a multimeter',
   'solar-gate': 'Solar powered gate installation',
   'construction-site': 'Construction site with brickwork under way',
   'water-tank-stand': 'Completed steel water tank stand',
+  'bricklaying': 'Bricklayers building a wall on site',
+  'floor-tiling': 'Tiler laying floor tiles',
+  'office-mopping': 'Cleaner mopping an office floor',
+  'cleaning-team': 'Cleaning team with a loaded service trolley',
+  'floor-scrubber': 'Operator using a ride-on floor scrubber in a lobby',
+  'commercial-kitchen': 'Stainless steel commercial kitchen',
+  'delivery-truck': 'Delivery truck on a rural road',
+  'warehouse-packing': 'Team packing boxes on a pallet in a warehouse',
+  'forklift-pallet': 'Forklift moving a wrapped pallet',
   'industrial-washer-service': 'Technician servicing an industrial laundry machine',
   'washer-repair-wide': 'Industrial washing machine opened for repair',
   'washer-repair-tall': 'Technician repairing an industrial washer'
 };
+
+/** Photos taken on real Mundesha sites. Everything else is illustrative art. */
+const REAL_PHOTOS = new Set([
+  'split-ac-installed-clinic',
+  'samsung-split-units-install',
+  'freezer-room-condensing-unit',
+  'reefer-unit-service',
+  'distribution-board',
+  'electrician-wiring-panel',
+  'solar-gate',
+  'construction-site',
+  'water-tank-stand',
+  'industrial-washer-service',
+  'washer-repair-wide',
+  'washer-repair-tall'
+]);
 
 const accentMeta = SERVICE_ACCENTS[service.slug];
 const accent = accentMeta
@@ -97,9 +130,11 @@ const jsonLd = {
                 decoding="async"
                 style={i > 0 ? 'max-height:240px' : ''}
               />
-              <figcaption style="font-size:0.78rem;color:var(--muted);padding:10px 14px;background:#fff">
-                Real site photo: {serviceName.toLowerCase()} by our team.
-              </figcaption>
+              {REAL_PHOTOS.has(ph.key) && (
+                <figcaption style="font-size:0.78rem;color:var(--muted);padding:10px 14px;background:#fff">
+                  Real site photo: {serviceName.toLowerCase()} by our team.
+                </figcaption>
+              )}
             </figure>
           ))}
           {photos.length === 0 && accent && (

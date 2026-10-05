@@ -77,6 +77,114 @@
       "width": 1100,
       "height": 473,
       "bytes": 66348
+    },
+    "ac-office-install": {
+      "src": "/images/photos/ac-office-install.webp",
+      "width": 450,
+      "height": 377,
+      "bytes": 20536
+    },
+    "ac-manifold-service": {
+      "src": "/images/photos/ac-manifold-service.webp",
+      "width": 449,
+      "height": 376,
+      "bytes": 31938
+    },
+    "ac-rural-condensers": {
+      "src": "/images/photos/ac-rural-condensers.webp",
+      "width": 451,
+      "height": 377,
+      "bytes": 26868
+    },
+    "condenser-gauges": {
+      "src": "/images/photos/condenser-gauges.webp",
+      "width": 460,
+      "height": 377,
+      "bytes": 16654
+    },
+    "display-fridge-service": {
+      "src": "/images/photos/display-fridge-service.webp",
+      "width": 460,
+      "height": 377,
+      "bytes": 23686
+    },
+    "db-wiring": {
+      "src": "/images/photos/db-wiring.webp",
+      "width": 462,
+      "height": 333,
+      "bytes": 12206
+    },
+    "cable-trench": {
+      "src": "/images/photos/cable-trench.webp",
+      "width": 462,
+      "height": 333,
+      "bytes": 38230
+    },
+    "multimeter-test": {
+      "src": "/images/photos/multimeter-test.webp",
+      "width": 447,
+      "height": 333,
+      "bytes": 16008
+    },
+    "office-mopping": {
+      "src": "/images/photos/office-mopping.webp",
+      "width": 448,
+      "height": 364,
+      "bytes": 17792
+    },
+    "cleaning-team": {
+      "src": "/images/photos/cleaning-team.webp",
+      "width": 448,
+      "height": 364,
+      "bytes": 19330
+    },
+    "floor-scrubber": {
+      "src": "/images/photos/floor-scrubber.webp",
+      "width": 448,
+      "height": 364,
+      "bytes": 20966
+    },
+    "commercial-kitchen": {
+      "src": "/images/photos/commercial-kitchen.webp",
+      "width": 448,
+      "height": 364,
+      "bytes": 18654
+    },
+    "bricklaying": {
+      "src": "/images/photos/bricklaying.webp",
+      "width": 463,
+      "height": 362,
+      "bytes": 33320
+    },
+    "floor-tiling": {
+      "src": "/images/photos/floor-tiling.webp",
+      "width": 458,
+      "height": 377,
+      "bytes": 18352
+    },
+    "delivery-truck": {
+      "src": "/images/photos/delivery-truck.webp",
+      "width": 445,
+      "height": 347,
+      "bytes": 17970
+    },
+    "warehouse-packing": {
+      "src": "/images/photos/warehouse-packing.webp",
+      "width": 437,
+      "height": 353,
+      "bytes": 33948
+    },
+    "forklift-pallet": {
+      "src": "/images/photos/forklift-pallet.webp",
+      "width": 445,
+      "height": 349,
+      "bytes": 20954
+    },
+    "team-technicians": {
+      "src": "/images/photos/team-technicians.webp",
+      "width": 499,
+      "height": 305,
+      "bytes": 30370
     }
   },
   "owner": {

@@ -6,6 +6,7 @@ import { SITE, WORKFORCE } from '../data/site';
 import images from '../data/images.json';
 
 const owner = images.owner;
+const team = images.photos['team-technicians'];
 const grassland = images.accents['Namibia-Backdrops']['01_omaheke-grassland'];
 
 const title = 'About Us | Mundesha Investments';
@@ -102,6 +103,17 @@ const description =
       <p class="section-intro">
         A full trade team, deployed to site as the job requires.
       </p>
+      <figure class="svc-art" style="margin:0 0 22px">
+        <img
+          src={team.src}
+          alt="Three Mundesha technicians walking to site with their toolboxes"
+          width={team.width}
+          height={team.height}
+          loading="lazy"
+          decoding="async"
+          style="width:100%;height:auto"
+        />
+      </figure>
       <ul class="tag-cloud">
         {WORKFORCE.map((w) => <li class="tag">{w}</li>)}
       </ul>

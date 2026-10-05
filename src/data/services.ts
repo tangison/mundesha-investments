@@ -30,7 +30,7 @@ export const SERVICES: ServiceDef[] = [
       'Servicing, maintenance and repairs',
       'Filter, coil and gas checks'
     ],
-    photos: ['split-ac-installed-clinic', 'samsung-split-units-install'],
+    photos: ['ac-office-install', 'ac-manifold-service', 'ac-rural-condensers'],
     metaTitle: 'Air Conditioning and Refrigeration | Mundesha Investments',
     metaDescription:
       'Supply, installation and servicing of split air conditioning units for offices, clinics, schools and government buildings across Namibia.',
@@ -52,7 +52,7 @@ export const SERVICES: ServiceDef[] = [
       'Industrial laundry machine servicing',
       'Mortuary refrigeration repair and service'
     ],
-    photos: ['freezer-room-condensing-unit', 'reefer-unit-service', 'industrial-washer-service', 'washer-repair-wide'],
+    photos: ['freezer-room-condensing-unit', 'condenser-gauges', 'display-fridge-service'],
     metaTitle: 'Cold Room Installation Namibia | Mundesha Investments',
     metaDescription:
       'Cold rooms, freezer rooms, reefer unit service and commercial fridge maintenance across Namibia, with laundry machine and mortuary refrigeration service.',
@@ -75,7 +75,7 @@ export const SERVICES: ServiceDef[] = [
       'Electric fence repair',
       'Power analysis'
     ],
-    photos: ['distribution-board', 'electrician-wiring-panel', 'solar-gate'],
+    photos: ['db-wiring', 'cable-trench', 'multimeter-test'],
     metaTitle: 'Electrician in Windhoek | Mundesha Investments',
     metaDescription:
       'Electrical installations, distribution boards, underground cable, solar gates and electric fence repair across Namibia. Over 20 years of experience.',
@@ -96,7 +96,7 @@ export const SERVICES: ServiceDef[] = [
       'Offices, clinics, schools and retail',
       'Site and camp cleaning'
     ],
-    photos: [],
+    photos: ['office-mopping', 'cleaning-team', 'floor-scrubber'],
     accent: 'Brand-Backgrounds.04_white-wall-red-band',
     metaTitle: 'Commercial Cleaning Services Namibia | Mundesha Investments',
     metaDescription:
@@ -119,7 +119,7 @@ export const SERVICES: ServiceDef[] = [
       'Tiling',
       'Plumbing repairs'
     ],
-    photos: ['construction-site', 'water-tank-stand'],
+    photos: ['bricklaying', 'floor-tiling', 'water-tank-stand'],
     metaTitle: 'Construction and Renovation Namibia | Mundesha Investments',
     metaDescription:
       'Renovations, water tank stands, brickwork and tiling across Namibia. Houses, schools and public buildings, taken from preparation to handover.',
@@ -140,7 +140,7 @@ export const SERVICES: ServiceDef[] = [
       'Site camps and crew catering',
       'Supplies and logistics support'
     ],
-    photos: [],
+    photos: ['commercial-kitchen'],
     accent: 'Namibia-Backdrops.02_dunes-sunrise',
     metaTitle: 'Catering and Events Namibia | Mundesha Investments',
     metaDescription:
@@ -162,7 +162,7 @@ export const SERVICES: ServiceDef[] = [
       'Order tracking and records',
       'Long-term supply contracts'
     ],
-    photos: [],
+    photos: ['delivery-truck', 'warehouse-packing', 'forklift-pallet'],
     accent: 'Namibia-Backdrops.05_bushveld-road',
     metaTitle: 'Supply and Delivery Services Namibia | Mundesha Investments',
     metaDescription:

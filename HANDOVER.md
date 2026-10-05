@@ -10,6 +10,14 @@ Stack: Astro 5 (static output) + TypeScript + plain CSS custom properties. Hosti
 - SEO: robots.txt, sitemap.xml (absolute canonical URLs), JSON-LD LocalBusiness + per-service Service schema, OG/Twitter cards, favicon suite (ico/svg/32/180/192/512/manifest)
 - Assets: SVGO-optimised logos (header logo 15.5 KB), hero WebP 119 KB, all photos WebP with explicit dimensions, 13 client logos as 160px-tall WebP for the 56px logo wall
 - Performance: home page HTML+CSS+JS+hero = 154 KB before fonts (Google Fonts, swapped). Budget 500 KB respected with headroom.
+- Service photos round 2 (2026-10-05): the client added 7 composite grids to the filebin. They were cropped into 42 cells (scripts/crop_composites.py, automatic gutter detection), 18 selections encoded to WebP (scripts/add_new_photos.mjs) and placed on service pages and /about.
+
+### Photo honesty policy
+
+- `src/pages/services/[slug].astro` holds a `REAL_PHOTOS` set. Only photos in that set (the original kit job photos) carry the "Real site photo" caption.
+- The new composite-grid images are client-supplied AI composites. They are used as service illustrations: descriptive alt text, no "real site photo" claim, no project page usage.
+- If the client wants the caption on more images, they must supply actual job photos and the keys get added to `REAL_PHOTOS`.
+- Composite F (electrical) had index numerals baked into cell corners; the crop script shaves 44 px off the bottom of those cells.
 
 ## 2. Defaults used (open questions from the brief)
 

@@ -39,7 +39,7 @@ Stack: Astro 5 (static output) + TypeScript + plain CSS custom properties. Hosti
 |---|---|
 | Master logo layout | Horizontal in header/footer (per brief default). Stacked shown on /brand. |
 | Surname spelling | RESOLVED by v3 documents: owner "Mudesha", company "Mundesha". |
-| Domain | SITE_URL env var. Fallback https://example.invalid. No guessed domain anywhere. |
+| Domain | Production domain: https://mundesha.com. SITE_URL env var set on Vercel; code fallback in astro.config.mjs also points at mundesha.com. |
 | Address | "Windhoek, Namibia" only. |
 | NORED date | Shown without a date (source said 2003, before founding). |
 | Ministry of Works date | Shown without a date. |
@@ -52,8 +52,8 @@ Stack: Astro 5 (static output) + TypeScript + plain CSS custom properties. Hosti
 
 | Var | Required | Purpose |
 |---|---|---|
-| SITE_URL | yes (prod) | Canonical URLs, sitemap, OG. Set to the final production URL. |
-| LEAD_EMAIL | no | Quote notification recipient. Fallback: Mundesha.inv.cc@gmail.com |
+| SITE_URL | yes (prod) | Canonical URLs, sitemap, OG. Set to https://mundesha.com on Vercel (2026-10-06). |
+| LEAD_EMAIL | yes (prod) | Quote notification recipient. Set to info@mundesha.com (2026-10-06). Code fallback matches. |
 | SHOW_CLIENT_LOGOS | no | Set to "false" to hide the logo wall until permissions are confirmed. Default true. |
 | RESEND_API_KEY | no | Enables direct email delivery of quote requests. Without it the form validates, then hands the user to prefilled WhatsApp or email buttons (honest, no fake "sent" state). |
 | RESEND_FROM | no | Verified sender, e.g. "Mundesha Website <quotes@yourdomain>". |
@@ -64,8 +64,12 @@ Never commit secrets. The tokens used for this deployment were shared in chat an
 
 1. `git init`, commit, push to GitHub repo `mundesha-investments`
 2. `vercel deploy --prod --token <TOKEN>` from the repo root (Astro auto-detected, static output, `/api` folder becomes the serverless function)
-3. `vercel env add SITE_URL production` set to the production URL, then redeploy so canonicals and sitemap use the real domain
-4. Cloudflare DNS (when the client domain is ready): CNAME to Vercel, then set SITE_URL to the domain and redeploy
+3. SITE_URL and LEAD_EMAIL are set in Vercel Production (https://mundesha.com and info@mundesha.com)
+4. mundesha.com is attached to the Vercel project but pending DNS. Client must add at their registrar:
+   - A record: mundesha.com -> 76.76.21.21 (recommended)
+   - CNAME: www.mundesha.com -> cname.vercel-dns.com
+   - Then run `vercel domains verify mundesha.com`. Canonicals and sitemap already point at mundesha.com, so no further redeploy is needed
+   - Email: create the info@mundesha.com mailbox and add SPF, DKIM and DMARC records so quote notifications deliver
 5. Vercel Deployment Protection covers preview deployments (staging shield). For deeper staging noindex, add a separate preview project with `X-Robots-Tag: noindex, nofollow`.
 
 ## 5. Quote form behaviour
@@ -122,4 +126,4 @@ npm run dev        # http://localhost:4321
 npm run build      # static build to dist/
 npx astro preview  # serve dist/ locally
 ```
-Site builds with SITE_URL unset for local work; canonicals then point at example.invalid, which is intentional so no wrong domain leaks.
+Local builds fall back to https://mundesha.com (astro.config.mjs), so canonicals and sitemap are correct everywhere. Security headers (CSP, HSTS, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy) ship via vercel.json. Fonts are self-hosted woff2 under /fonts with immutable caching; no third-party font requests.

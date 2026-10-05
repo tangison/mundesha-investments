@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import QuoteForm from '../components/QuoteForm.astro';
-import { SITE } from '../data/site';
+import { SITE, REGIONS } from '../data/site';
 
 const title = 'Request a Quote | Mundesha Investments';
 const description =
@@ -22,15 +22,15 @@ const description =
         <div>
           <SectionHeading first="GET IN" second="TOUCH" />
           <QuoteForm />
-          <div style="margin-top:26px;padding:20px 22px;border:1px solid var(--line);border-radius:12px;background:var(--brand-surface)">
-            <h3 style="font-size:1.05rem;margin-bottom:10px">What happens after you send the form</h3>
-            <ol style="margin:0;padding-left:20px;color:var(--brand-text);font-size:0.95rem;line-height:1.7">
+          <div class="note-card">
+            <h3>What happens after you send the form</h3>
+            <ol>
               <li>Your request reaches our team directly. We receive the details you entered, nothing else.</li>
               <li>We phone or WhatsApp you, usually the same working day, to confirm the details.</li>
               <li>For jobs that need it, we visit the site before quoting, at no charge.</li>
               <li>You receive a written quote with a fixed price and a start date.</li>
             </ol>
-            <p style="margin-top:12px;font-size:0.9rem;color:var(--muted)">
+            <p class="note-foot">
               No newsletters and no sharing of your details. Your information is used only to prepare your quote.
             </p>
           </div>
@@ -44,9 +44,11 @@ const description =
             </span>
             <div>
               <h3>Phone</h3>
-              {SITE.phones.map((phone) => (
-                <a href={`tel:${phone.tel}`} style="display:block">{phone.display}</a>
-              ))}
+              <span class="contact-lines">
+                {SITE.phones.map((phone) => (
+                  <a href={`tel:${phone.tel}`}>{phone.display}</a>
+                ))}
+              </span>
             </div>
           </div>
 
@@ -87,7 +89,12 @@ const description =
             <div>
               <h3>Where we are</h3>
               <span style="font-weight:600">{SITE.address}</span>
-              <p style="font-size:0.88rem;color:var(--muted);margin-top:4px">Projects delivered all around Namibia.</p>
+              <p style="font-size:0.88rem;color:var(--muted);margin-top:4px">Projects delivered in these regions:</p>
+              <ul class="region-chips">
+                {REGIONS.map((region) => (
+                  <li>{region}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

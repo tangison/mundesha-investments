@@ -54,6 +54,7 @@
 }
 
 :root {
+  color-scheme: light;
   --brand-primary: #A70202;
   --brand-ink: #020202;
   --brand-grad-a: #A60000;
@@ -86,7 +87,15 @@ body {
   color: var(--brand-text);
   background: var(--brand-surface);
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
+
+/* Fast taps on touch screens; scrollbars stay quiet. */
+a, button, summary, input, select, textarea, label { touch-action: manipulation; }
+@supports (scrollbar-width: thin) {
+  html { scrollbar-width: thin; scrollbar-color: rgba(35, 31, 32, 0.32) transparent; }
+}
+::selection { background: var(--brand-primary); color: #fff; }
 img, svg, video { display: block; max-width: 100%; }
 input, button, textarea, select { font: inherit; }
 h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; }
@@ -114,6 +123,7 @@ p { text-wrap: pretty; }
 
 /* ---------- layout ---------- */
 .container { width: 100%; max-width: var(--container); margin-inline: auto; padding-inline: 22px; }
+main [id] { scroll-margin-top: 96px; }
 .section { padding: 84px 0; }
 .section-tight { padding: 60px 0; }
 .section-alt { background: var(--brand-surface-alt); }
@@ -286,7 +296,7 @@ p { text-wrap: pretty; }
 @media (min-width: 640px) { .proof-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 980px) { .proof-grid { grid-template-columns: repeat(4, 1fr); } }
 .proof-item { border-top: 3px solid var(--brand-accent); padding-top: 16px; }
-.proof-item .big { font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; line-height: 1.1; }
+.proof-item .big { font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .proof-item p { font-size: 0.95rem; color: rgba(255, 255, 255, 0.86); }
 .proof-item .cap { font-size: 0.78rem; letter-spacing: 0.09em; text-transform: uppercase; color: rgba(255, 255, 255, 0.6); font-weight: 600; margin-top: 6px; }
 
@@ -306,7 +316,7 @@ p { text-wrap: pretty; }
   text-transform: uppercase; color: var(--brand-primary);
   border: 1.5px solid var(--brand-primary); border-radius: 999px; padding: 5px 11px;
 }
-.date { font-size: 0.85rem; font-weight: 600; color: var(--muted); }
+.date { font-size: 0.85rem; font-weight: 600; color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* ---------- filters ---------- */
 .filters { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 10px; }
@@ -559,5 +569,132 @@ p { text-wrap: pretty; }
 
 /* ---------- 404 / 500 ---------- */
 .error-page { min-height: 62vh; display: flex; align-items: center; text-align: center; }
-.error-page .code { font-family: var(--font-display); font-weight: 800; font-size: clamp(4.4rem, 14vw, 8rem); line-height: 1; color: var(--brand-primary); }
+.error-page .code { font-family: var(--font-display); font-weight: 800; font-size: clamp(4.4rem, 14vw, 8rem); line-height: 1; color: var(--brand-primary); font-variant-numeric: tabular-nums; }
 .error-page p { color: var(--muted); max-width: 46ch; margin: 14px auto 28px; }
+.error-page h1 { font-size: 1.5rem; }
+.error-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 28px; }
+.error-page .quick { list-style: none; padding: 0; margin: 26px 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.error-page .quick a {
+  display: inline-block; font-weight: 700; font-size: 0.86rem; text-decoration: none;
+  color: var(--brand-text); border: 1.5px solid var(--line-strong); border-radius: 999px; padding: 9px 18px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.error-page .quick a:hover { border-color: var(--brand-primary); color: var(--brand-primary); }
+
+/* ==========================================================================
+   v6 polish: micro-interactions, scroll reveals, process strip, print
+   Compositor-friendly only (transform, opacity). All motion respects
+   prefers-reduced-motion. No JavaScript added.
+   ========================================================================== */
+
+/* ---------- inline text links (replaces inline styles) ---------- */
+.text-link { color: var(--brand-primary); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; }
+.text-link:hover { color: var(--brand-ink); }
+
+/* ---------- hero entrance (one-shot, staggered) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-content > * { animation: hero-in 0.55s ease-out both; }
+  .hero-content > :nth-child(2) { animation-delay: 0.07s; }
+  .hero-content > :nth-child(3) { animation-delay: 0.14s; }
+  .hero-content > :nth-child(4) { animation-delay: 0.21s; }
+  .hero-content > :nth-child(5) { animation-delay: 0.28s; }
+}
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- scroll reveals (CSS scroll-driven, no JS) ----------
+   Browsers without animation-timeline never hide content:
+   the rules live inside @supports, default state stays visible. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .tiles > .service-card,
+    .feat-grid > .project-card,
+    .gallery-grid > .gallery-item,
+    .value-grid > .value-card,
+    .process > li {
+      animation: reveal-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+  }
+}
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- service tile image zoom on hover ---------- */
+.service-card .tile-img { transition: transform 0.28s ease; }
+.service-card:hover .tile-img, .service-card:focus-within .tile-img { transform: scale(1.045); }
+
+/* ---------- animated underlines: footer and drawer lists ---------- */
+.footer-drop details ul a, .drawer-links a {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1.5px; background-repeat: no-repeat; background-position: 0 100%;
+  transition: background-size 0.18s ease;
+}
+.footer-drop details ul a:hover, .footer-drop details ul a:focus-visible,
+.drawer-links a:hover, .drawer-links a:focus-visible { background-size: 100% 1.5px; }
+
+/* ---------- process strip ---------- */
+.process { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .process { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .process { grid-template-columns: repeat(4, 1fr); } }
+.process li {
+  background: var(--brand-surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 24px 22px; box-shadow: var(--shadow-1); display: flex; flex-direction: column; gap: 9px;
+}
+.process .step {
+  font-family: var(--font-display); font-weight: 800; font-size: 0.95rem;
+  width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  color: #fff; background: linear-gradient(135deg, var(--brand-grad-a), var(--brand-grad-b));
+  box-shadow: 0 6px 16px rgba(166, 0, 0, 0.25); font-variant-numeric: tabular-nums;
+}
+.process h3 { font-size: 1.06rem; color: var(--brand-ink); }
+.process p { font-size: 0.93rem; color: var(--muted); }
+
+/* ---------- form success: check mark, pop-in ---------- */
+.form-success h3 { display: flex; align-items: center; gap: 12px; }
+.form-success h3::before {
+  content: ''; flex: none; width: 34px; height: 34px; border-radius: 50%;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 13l4 4 10-11'/%3E%3C/svg%3E") center / 17px no-repeat,
+    linear-gradient(135deg, var(--brand-grad-a), var(--brand-grad-b));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .form-success h3::before { animation: pop-in 0.35s ease 0.1s both; }
+}
+@keyframes pop-in {
+  from { transform: scale(0.4); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ---------- contact page helper classes ---------- */
+.note-card { margin-top: 26px; padding: 20px 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--brand-surface); }
+.note-card h3 { font-size: 1.05rem; margin-bottom: 10px; }
+.note-card ol { margin: 0; padding-left: 20px; font-size: 0.95rem; line-height: 1.7; }
+.note-card .note-foot { margin-top: 12px; font-size: 0.9rem; color: var(--muted); }
+.contact-lines { display: grid; gap: 2px; }
+.region-chips { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
+.region-chips li {
+  font-size: 0.74rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--brand-primary); background: rgba(167, 2, 2, 0.08); border-radius: 999px; padding: 4px 11px;
+}
+
+/* home gallery strip: anchor wraps a real figure */
+.home-gallery-item { text-decoration: none; color: inherit; }
+.home-gallery-item figure { margin: 0; display: flex; flex-direction: column; flex-grow: 1; }
+
+/* ---------- print ---------- */
+@media print {
+  .brand-bar, .mobile-bar, .skip-link, .menu-btn, .drawer, .drawer-backdrop, .cta-band, .hero-slash { display: none !important; }
+  body { color: #000; background: #fff; }
+  .section, .section-tight { padding: 24px 0; }
+  .site-footer { background: #fff; color: #000; border-top: 2px solid #000; padding: 18px 0; }
+  .site-footer, .site-footer a, .footer-tagline, .footer-tagline span { color: #000; }
+  .site-header { position: static; }
+  /* never hide content in print, whatever the animation state */
+  *, *::before, *::after { animation: none !important; opacity: 1 !important; transform: none !important; }
+}

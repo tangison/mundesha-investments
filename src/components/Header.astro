@@ -89,7 +89,7 @@ const drawerLinks = [
   const drawer = document.getElementById('site-drawer');
   const backdrop = document.querySelector<HTMLElement>('.drawer-backdrop');
 
-  function setDrawer(open: boolean) {
+  function setDrawer(open: boolean, returnFocus = false) {
     if (!btn || !drawer || !backdrop) return;
     drawer.classList.toggle('open', open);
     drawer.inert = !open;
@@ -101,6 +101,8 @@ const drawerLinks = [
     if (open) {
       const first = drawer.querySelector<HTMLAnchorElement>('a');
       first?.focus();
+    } else if (returnFocus) {
+      btn.focus();
     }
   }
 
@@ -110,12 +112,26 @@ const drawerLinks = [
       if ((e.target as HTMLElement).closest('a')) setDrawer(false);
     });
     for (const el of document.querySelectorAll('[data-drawer-close]')) {
-      el.addEventListener('click', () => setDrawer(false));
+      el.addEventListener('click', () => setDrawer(false, true));
     }
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && drawer.classList.contains('open')) {
-        setDrawer(false);
-        btn.focus();
+        setDrawer(false, true);
+      }
+    });
+    // Tab focus trap: keyboard stays inside the open drawer.
+    drawer.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || !drawer.classList.contains('open')) return;
+      const focusables = drawer.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+      if (focusables.length === 0) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
       }
     });
   }

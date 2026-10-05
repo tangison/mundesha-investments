@@ -3,17 +3,17 @@ export const SITE = {
   legalName: 'Mundesha Investment One CC',
   tagline: 'Your needs, Our Business',
   founded: 2016,
-  founder: 'Elia Hangeige Mudesha',
+  founder: 'Elia Hangeinge Mudesha',
   ownerExperience: 'Over 20 years in electrical, air conditioning and refrigeration',
   about:
-    'Mundesha Investment One CC was founded in 2016 by Mr. Elia Hangeige Mudesha. We offer our services all around Namibia. We believe in quality of work and give our customers good value for their money.',
+    'Mundesha Investment One CC was founded in 2016 by Mr. Elia Hangeinge Mudesha. We offer our services all around Namibia. We believe in quality of work and give our customers good value for their money.',
   address: 'Windhoek, Namibia',
   phones: [
     { display: '+264 81 277 7553', tel: '+264812777553' },
     { display: '+264 85 277 7553', tel: '+264852777553' }
   ],
   whatsapp: 'https://wa.me/264812777553',
-  email: 'Mundesha.inv.cc@gmail.com',
+  email: 'info@mundesha.com',
   instagram: {
     handle: 'Mundesha_investment_one',
     url: 'https://www.instagram.com/Mundesha_investment_one'

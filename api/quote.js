@@ -10,10 +10,11 @@ const SERVICES = new Set([
   'construction-renovation',
   'catering-events',
   'supply-logistics',
+  'maintenance-repairs',
   'other'
 ]);
 
-const LEAD_EMAIL = process.env.LEAD_EMAIL || 'Mundesha.inv.cc@gmail.com';
+const LEAD_EMAIL = process.env.LEAD_EMAIL || 'info@mundesha.com';
 
 function str(v) {
   return typeof v === 'string' ? v.trim() : '';

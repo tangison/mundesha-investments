@@ -14,7 +14,7 @@ Stack: Astro 5 (static output) + TypeScript + plain CSS custom properties. Hosti
 - Mobile menu is now an off-canvas drawer with a photo thumbnail per service.
 - Footer minimised: logo, tagline, three quick contact pills, Services and Company links collapsed into details dropdowns, slim copyright bar with the Tangison Studio credit.
 - Pending client items from v3: Lady Pohamba testimonial card (need hospital permission before showing name/logo), registration number CC/2016/12742 (show in footer after client confirms), consent confirmation for publishing team and site-visit photos, organogram with-names variant (only after written consent per person), "medically cleared for Swakop Uranium / Husab Mine" proof point (only if certificates confirmed current).
-- Spelling resolved by v3 documents: the owner is "Elia Hangeige Mudesha", the company "Mundesha Investment One CC". No longer an open question.
+- Spelling resolved by v3 documents: the owner is "Elia Hangeinge Mudesha", the company "Mundesha Investment One CC". No longer an open question.
 - Private documents rule honoured: no staff IDs, phone numbers, dates of birth or medical data anywhere on the site or in the repo.
 
 ## 1. What was delivered

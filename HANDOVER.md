@@ -127,3 +127,17 @@ npm run build      # static build to dist/
 npx astro preview  # serve dist/ locally
 ```
 Local builds fall back to https://mundesha.com (astro.config.mjs), so canonicals and sitemap are correct everywhere. Security headers (CSP, HSTS, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy) ship via vercel.json. Fonts are self-hosted woff2 under /fonts with immutable caching; no third-party font requests.
+
+## v6 (skills pass)
+
+Applied vercel-labs web-interface-guidelines review + shadcn technique to the whole site, no new JavaScript libraries:
+
+- Drawer: full Tab focus trap and focus return on every close path (verified with key presses).
+- Quote form: success panel is role="status", receives focus, validation focuses the first invalid field.
+- Home: new HOW IT WORKS four-step strip; gallery strip now valid <figure> markup.
+- Contact: service-region chips (Omaheke, Erongo, Otjozondjupa, Oshana, Oshikoto, Khomas).
+- 404: quick links to Services, Projects, Gallery, About.
+- Motion: CSS-only hero entrance and scroll reveals (Chromium animation-timeline, @supports guarded, reduced-motion respected, print-safe).
+- Infrastructure: color-scheme light, touch-action manipulation, tabular-nums, scroll-margin-top, inter-600 preload, print stylesheet.
+
+Commit 0695577. Live on Vercel.

@@ -5,7 +5,7 @@ import images from '../data/images.json';
 
 const current = Astro.url.pathname;
 const isActive = (href: string) => current === href || (href !== '/' && current.startsWith(href + '/'));
-const tiles = images.tiles as Record<string, { src: string; width: number; height: number }>;
+const smallTiles = images.tilesSm as Record<string, { src: string; width: number; height: number }>;
 const drawerLinks = [
   { href: '/projects', label: 'Projects' },
   { href: '/gallery', label: 'Gallery' },
@@ -40,7 +40,7 @@ const drawerLinks = [
 </header>
 
 <div class="drawer-backdrop" data-drawer-close hidden></div>
-<nav class="drawer" id="site-drawer" aria-label="Site menu" role="dialog" aria-modal="true" aria-hidden="true">
+<nav class="drawer" id="site-drawer" aria-label="Site menu" role="dialog" aria-modal="true" aria-hidden="true" inert>
   <div class="drawer-head">
     <img
       src="/logos/mundesha/mundesha-logo-horizontal-light.svg"
@@ -60,7 +60,7 @@ const drawerLinks = [
       <li>
         <a href={`/services/${s.slug}`}>
           <img
-            src={tiles[s.slug]?.src}
+            src={smallTiles[s.slug]?.src}
             alt=""
             aria-hidden="true"
             width="60"
@@ -92,6 +92,7 @@ const drawerLinks = [
   function setDrawer(open: boolean) {
     if (!btn || !drawer || !backdrop) return;
     drawer.classList.toggle('open', open);
+    drawer.inert = !open;
     backdrop.hidden = !open;
     btn.setAttribute('aria-expanded', String(open));
     btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');

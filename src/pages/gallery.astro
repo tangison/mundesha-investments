@@ -39,14 +39,14 @@ const PROJECT_LABELS: Record<string, string> = {
       <p id="gallery-count" style="font-size:0.9rem;color:var(--muted);margin-bottom:20px" role="status"></p>
 
       <div class="gallery-grid" id="gallery-grid">
-        {GALLERY.map((g) => (
+        {GALLERY.map((g, i) => (
           <figure class="gallery-item" data-filter={g.service}>
             <img
               src={g.file}
               alt={g.alt}
               width={g.width}
               height={g.height}
-              loading="lazy"
+              loading={i < 3 ? 'eager' : 'lazy'}
               decoding="async"
             />
             <figcaption>

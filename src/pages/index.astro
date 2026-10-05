@@ -146,14 +146,14 @@ const description =
         Straight from our jobs around Namibia. See the full set in the <a href="/gallery" style="color:var(--brand-primary);font-weight:600">gallery</a>.
       </p>
       <div class="gallery-grid">
-        {strip.map((g) => (
+        {strip.map((g, i) => (
           <a class="gallery-item" href="/gallery" style="text-decoration:none">
             <img
               src={g.file}
               alt={g.alt}
               width={g.width}
               height={g.height}
-              loading="lazy"
+              loading={i === 0 ? 'eager' : 'lazy'}
               decoding="async"
             />
             <figcaption style="padding:12px 14px 14px;font-size:0.85rem;color:var(--muted)">{g.caption}</figcaption>

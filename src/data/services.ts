@@ -131,7 +131,8 @@ export const SERVICES: ServiceDef[] = [
     blurb: 'Catering and events for corporate and site clients.',
     intro: [
       'We provide catering and event management for corporate and site clients. That covers food service for crews and guests, and the planning that keeps an event running on time.',
-      'Between 2017 and 2021 we delivered site service, supplies and maintenance support at the Swakop Uranium mine in the Erongo Region together with Welwitschia Catering Service. That experience shows in how we plan, staff and run events.'
+      'Between 2017 and 2021 we delivered site service, supplies and maintenance support at the Swakop Uranium mine in the Erongo Region together with Welwitschia Catering Service. That experience shows in how we plan, staff and run events.',
+      'Catering is often booked alongside our cleaning and supply services for site camps and functions, so one contractor handles the kitchen, the kitchen cleaning and the groceries that keep it stocked. For corporate events we handle the staffing and the schedule, and we bring in the equipment the venue does not have.'
     ],
     points: [
       'Corporate and site catering',

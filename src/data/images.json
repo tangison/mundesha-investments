@@ -741,5 +741,47 @@
       "height": 480,
       "bytes": 29188
     }
+  },
+  "tilesSm": {
+    "air-conditioning": {
+      "src": "/images/tiles-sm/air-conditioning.webp",
+      "width": 120,
+      "height": 90
+    },
+    "refrigeration": {
+      "src": "/images/tiles-sm/refrigeration.webp",
+      "width": 120,
+      "height": 90
+    },
+    "electrical-works": {
+      "src": "/images/tiles-sm/electrical-works.webp",
+      "width": 120,
+      "height": 90
+    },
+    "cleaning": {
+      "src": "/images/tiles-sm/cleaning.webp",
+      "width": 120,
+      "height": 90
+    },
+    "construction-renovation": {
+      "src": "/images/tiles-sm/construction-renovation.webp",
+      "width": 120,
+      "height": 90
+    },
+    "catering-events": {
+      "src": "/images/tiles-sm/catering-events.webp",
+      "width": 120,
+      "height": 90
+    },
+    "supply-logistics": {
+      "src": "/images/tiles-sm/supply-logistics.webp",
+      "width": 120,
+      "height": 90
+    },
+    "maintenance-repairs": {
+      "src": "/images/tiles-sm/maintenance-repairs.webp",
+      "width": 120,
+      "height": 90
+    }
   }
 }

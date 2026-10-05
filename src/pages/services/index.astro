@@ -22,6 +22,11 @@ const tiles = images.tiles as Record<string, { src: string; width: number; heigh
   <section class="section">
     <div class="container">
       <SectionHeading first="WHAT WE" second="DO" />
+      <p class="section-intro">
+        Every service below is delivered by our own people. Technicians, artisans, welders, electricians,
+        cleaners and general workers work under one management structure, so a single phone call covers
+        repairs, installations, renovations and the supplies that go with them.
+      </p>
       <div class="tiles" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))">
         {SERVICES.map((s) => {
           const tile = tiles[s.slug];

@@ -94,8 +94,9 @@ const jsonLd = {
   url: new URL(`/services/${service.slug}`, import.meta.env.SITE).href,
   provider: {
     '@type': 'LocalBusiness',
+    '@id': 'https://mundesha.com/#organization',
     name: SITE.legalName,
-    telephone: SITE.phones[0].tel,
+    telephone: SITE.phones[0].display,
     email: SITE.email,
     address: { '@type': 'PostalAddress', addressLocality: 'Windhoek', addressCountry: 'NA' },
     areaServed: { '@type': 'Country', name: 'Namibia' }

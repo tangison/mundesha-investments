@@ -130,18 +130,13 @@ const jsonLd = {
             <figure class="svc-art" style="margin:0">
               <img
                 src={ph.src}
-                alt={PHOTO_ALT[ph.key] ?? `${serviceName} work by Mundesha Investments`}
+                alt={REAL_PHOTOS.has(ph.key) ? `Real site photo: ${PHOTO_ALT[ph.key] ?? serviceName.toLowerCase() + ' work by our team'}` : `Illustration: ${PHOTO_ALT[ph.key] ?? serviceName.toLowerCase() + ' work by our team'}`}
                 width={ph.width}
                 height={ph.height}
                 loading="lazy"
                 decoding="async"
                 style={i > 0 ? 'max-height:240px' : ''}
               />
-              {REAL_PHOTOS.has(ph.key) && (
-                <figcaption style="font-size:0.78rem;color:var(--muted);padding:10px 14px;background:#fff">
-                  Real site photo: {serviceName.toLowerCase()} by our team.
-                </figcaption>
-              )}
             </figure>
           ))}
           {photos.length === 0 && accent && (

@@ -14,6 +14,7 @@ const drawerLinks = [
   { href: '/clients', label: 'Clients' },
   { href: '/contact', label: 'Contact' }
 ];
+const topNav = NAV.filter((item) => item.href !== '/services');
 ---
 <header class="site-header">
   <div class="container header-inner">
@@ -23,19 +24,41 @@ const drawerLinks = [
         alt="Mundesha Investments"
         width="238"
         height="75"
-        style="height:40px;width:auto"
       />
     </a>
     <nav class="nav" aria-label="Main">
-      {NAV.map((item) => (
+      <div class="nav-drop" data-nav-drop>
+        <button class="nav-drop-btn" type="button" aria-expanded="false" aria-controls="services-menu">
+          Services
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="nav-panel" id="services-menu" aria-label="Services">
+          <a href="/services" class="nav-panel-all" aria-current={isActive('/services') ? 'page' : undefined}>
+            <span class="nav-panel-name">All services</span>
+            <span class="nav-panel-hint">Overview</span>
+          </a>
+          {SERVICES.map((s) => (
+            <a href={`/services/${s.slug}`} aria-current={isActive(`/services/${s.slug}`) ? 'page' : undefined}>
+              <span class="nav-panel-name">{s.shortName}</span>
+              <span class="nav-panel-hint">{s.serviceType}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+      {topNav.map((item) => (
         <a href={item.href} aria-current={isActive(item.href) ? 'page' : undefined}>{item.label}</a>
       ))}
       <a class="btn btn-primary" href="/contact">Request a quote</a>
     </nav>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-drawer" aria-label="Open menu">
-      <svg class="icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
-    </button>
+    <div class="header-actions">
+      <button class="search-btn" type="button" data-search-open aria-haspopup="dialog" aria-label="Search the site">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </button>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-drawer" aria-label="Open menu">
+        <svg class="icon-bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -132,6 +155,50 @@ const drawerLinks = [
       } else if (!e.shiftKey && document.activeElement === last) {
         e.preventDefault();
         first.focus();
+      }
+    });
+  }
+
+  // Desktop services dropdown: hover intent + click + full keyboard support.
+  const drop = document.querySelector<HTMLElement>('[data-nav-drop]');
+  const dropBtn = drop?.querySelector<HTMLButtonElement>('.nav-drop-btn');
+  const dropPanel = drop?.querySelector<HTMLElement>('.nav-panel');
+  let hoverTimer: ReturnType<typeof setTimeout> | undefined;
+
+  function setDrop(open: boolean, returnFocus = false) {
+    if (!drop || !dropBtn || !dropPanel) return;
+    drop.classList.toggle('open', open);
+    dropBtn.setAttribute('aria-expanded', String(open));
+    if (!open && returnFocus) dropBtn.focus();
+  }
+
+  if (drop && dropBtn && dropPanel) {
+    dropBtn.addEventListener('click', (e) => {
+      // Mouse users already opened the panel by hovering; a click must not
+      // immediately close it again. Touch and keyboard still toggle.
+      if ((e as PointerEvent).pointerType === 'mouse') {
+        setDrop(true);
+        return;
+      }
+      setDrop(!drop.classList.contains('open'));
+    });
+    drop.addEventListener('mouseenter', () => {
+      clearTimeout(hoverTimer);
+      setDrop(true);
+    });
+    drop.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimer);
+      hoverTimer = setTimeout(() => setDrop(false), 140);
+    });
+    drop.addEventListener('focusout', (e) => {
+      if (!drop.contains(e.relatedTarget as Node)) setDrop(false);
+    });
+    document.addEventListener('click', (e) => {
+      if (!drop.contains(e.target as Node)) setDrop(false);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drop.classList.contains('open')) {
+        setDrop(false, true);
       }
     });
   }

@@ -169,3 +169,44 @@ recoverable logos - verified by local-header scan).
   real-keyboard Tab reaches the button with visible ring.
 
 Commit 0711ad7. Live on Vercel.
+
+## v8 (search, premium buttons, logo polish, captions to alt text, market audit)
+
+User directives: hamburger borderless, search button + system, all buttons fully
+rounded and premium, standout logo, footer logo bigger, no image captions (use
+alt text), inspect all images and find the AI-generated ones, full SEO for
+mundesha.com, competitor check.
+
+- Search: SearchDialog.astro (vanilla, zero deps) opens from the header button
+  or the "/" key. Prebuilt /search-index.json (46 entries: 11 pages + 8 services
+  + 27 projects) fetched lazily on first open. Highlighted matches, scored
+  ranking, arrow-key navigation, Esc pill, backdrop click, focus return, Tab
+  trap inside the dialog, role="status" result announcements. Verified desktop
+  and mobile (46x46 target).
+- Buttons: every button and button-like control is now a pill (999px) or a
+  circle - .btn (14px 28px), nav links, services trigger, Esc chip, drawer
+  close (borderless circle with 90-degree hover rotate), to-top (border
+  removed). Primary pill gained an inset top highlight for the premium read.
+- Logo: header logo 56 -> 62 px with stronger drop-shadow and a 1.03 hover
+  lift; mobile 46 px. Footer logo 44 -> 64 px (CSS and inline in sync).
+- Captions: every <figcaption> removed site-wide (gallery, home strip, about,
+  team, services). Real kit photos carry alt prefixed "Real site photo:",
+  AI-derived service images carry alt prefixed "Illustration:". Zero
+  figcaptions remain in src or dist.
+- Image inventory: scripts/image_inventory.py -> download/image-inventory-
+  2026-10-06.md. 40 AI-generated files registered (16 accent panels, 18 service
+  composites, 3 home tiles, 3 drawer thumbs), 51 real photos, 19 brand assets,
+  6 icons. Tile map in scripts/v3_assets.mjs is the provenance source.
+- Market audit: download/market-audit-2026-10-06.md (tangison-market-audit
+  format). Key finding: brand-name searches return government tender PDFs and
+  a Gazette notice, not mundesha.com; the domain is not indexed while DNS is
+  pending; no GBP surfaced. Named competitors with sources: GMC Airconditioning
+  Namibia, Gree Namibia (Cold Air), CTS Namibia, Safland, Royal Serve Cleaning.
+  Week-one wins: DNS cutover, Search Console + sitemap submit, Google Business
+  Profile, street address for NAP.
+- Verified: 21 pages built, all routes 200 live, 404 intact, canonicals and OG
+  on mundesha.com, zero console errors, 0 px overflow on audited routes, home
+  initial transfer 66 KB (budget 500 KB), "/" shortcut and dialog verified on
+  live HTML, pill/circle styles confirmed in computed styles on production.
+
+Commit be089ff. Live on Vercel.

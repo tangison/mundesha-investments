@@ -553,6 +553,31 @@ main [id] { scroll-margin-top: 96px; }
 @media (min-width: 768px) { .mobile-bar { display: none; } }
 @media (max-width: 767.98px) { body { padding-bottom: 54px; } }
 
+/* ---------- back to top ---------- */
+.to-top {
+  position: fixed; right: 18px; bottom: 18px; z-index: 85;
+  width: 48px; height: 48px;
+  display: grid; place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand-grad-a), var(--brand-grad-b));
+  color: #fff; box-shadow: var(--shadow-2); cursor: pointer;
+  visibility: hidden; opacity: 0; transform: translateY(8px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+}
+.to-top svg { width: 22px; height: 22px; }
+.to-top.is-visible {
+  visibility: visible; opacity: 1; transform: none;
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s;
+}
+.to-top:hover { background: var(--brand-primary); }
+.to-top:focus-visible { outline-offset: 3px; }
+@media (max-width: 767.98px) {
+  .to-top { right: 14px; bottom: calc(66px + env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .to-top, .to-top.is-visible { transition: none; transform: none; }
+}
+
 /* ---------- brand page ---------- */
 .swatch-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); }
 .swatch { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #fff; }
@@ -689,7 +714,7 @@ main [id] { scroll-margin-top: 96px; }
 
 /* ---------- print ---------- */
 @media print {
-  .brand-bar, .mobile-bar, .skip-link, .menu-btn, .drawer, .drawer-backdrop, .cta-band, .hero-slash { display: none !important; }
+  .brand-bar, .mobile-bar, .skip-link, .menu-btn, .drawer, .drawer-backdrop, .cta-band, .hero-slash, .to-top { display: none !important; }
   body { color: #000; background: #fff; }
   .section, .section-tight { padding: 24px 0; }
   .site-footer { background: #fff; color: #000; border-top: 2px solid #000; padding: 18px 0; }

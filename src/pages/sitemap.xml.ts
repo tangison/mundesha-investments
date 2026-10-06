@@ -7,6 +7,7 @@ const staticRoutes = [
   'services',
   'projects',
   'clients',
+  'company-profile',
   'gallery',
   'contact',
   'brand',

@@ -16,6 +16,7 @@ const pages: Entry[] = [
   { t: 'Team', d: 'The Mundesha workforce: technicians, artisans and support staff led by the owner.', u: '/team', k: 'team staff workforce organogram people' },
   { t: 'About Us', d: 'Mundesha Investment One CC is a Windhoek based trade services company founded in 2016.', u: '/about', k: 'about company story owner elia mudesha cc registration' },
   { t: 'Clients', d: 'Organisations that trust Mundesha Investments, from Swakop Uranium to MTC and GIPF.', u: '/clients', k: 'clients references logo wall' },
+  { t: 'Company Profile (PDF)', d: 'Read or download our company profile: who we are, services and workforce, clients, projects and contact details.', u: '/company-profile', k: 'company profile pdf document download brochure capabilities' },
   { t: 'Brand', d: 'The Mundesha Investments brand: logo variants, colours and typography.', u: '/brand', k: 'brand logo colours fonts guidelines press' },
   { t: 'Contact', d: 'Call, WhatsApp or email Mundesha Investments, or request a quote online.', u: '/contact', k: 'contact phone whatsapp email quote address windhoek' },
   { t: 'Privacy Policy', d: 'How Mundesha Investments handles the information you send us.', u: '/privacy-policy', k: 'privacy policy data protection' },

@@ -1,0 +1,180 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTABand from '../components/CTABand.astro';
+
+const title = 'Company Profile (PDF) | Mundesha Investments';
+const description =
+  'Read or download the Mundesha Investments company profile: who we are, our services and workforce, our clients, projects and how to reach us. 14-page PDF.';
+
+const pdfPath = '/downloads/Mundesha-Investments-Company-Profile.pdf';
+
+const contents = [
+  { n: '01', label: 'About us', note: 'Who we are and who leads us' },
+  { n: '02', label: 'Services and workforce', note: 'What we do and the people who do it' },
+  { n: '03', label: 'Our clients', note: 'Organisations we have served' },
+  { n: '04', label: 'Projects', note: 'Completed work and references' },
+  { n: '05', label: 'Sub-contracting work', note: 'Solar, electrification and refrigeration' },
+  { n: '06', label: 'Our work', note: 'A selection of recent work across Namibia' },
+  { n: '07', label: 'Renovation work', note: 'Shower block and manhole renovation' },
+  { n: '08', label: 'Our team', note: 'How we are organised' },
+  { n: '09', label: 'Contact', note: 'Reach us and visit mundesha.com' }
+];
+---
+<Base title={title} description={description} path="/company-profile">
+  <section class="page-hero">
+    <div class="container">
+      <h1>COMPANY PROFILE</h1>
+      <p class="lead">
+        Everything about Mundesha Investments in one document: who we are, what we do,
+        who we work for and how to reach us. Read it here or download it for later.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="profile-toolbar" role="group" aria-label="Company profile actions">
+        <a class="btn btn-primary" href={pdfPath} download>Download PDF</a>
+        <a class="btn btn-outline-dark" href={pdfPath} target="_blank" rel="noopener">Open in new tab</a>
+        <button class="btn btn-outline-dark" type="button" id="pdf-fullscreen" aria-controls="pdf-frame">
+          Fullscreen
+        </button>
+        <span class="pdf-meta">PDF, 14 pages, 4.8 MB</span>
+      </div>
+
+      <div class="pdf-stage" id="pdf-stage">
+        <iframe
+          id="pdf-frame"
+          src={pdfPath + '#view=FitH'}
+          title="Mundesha Investments company profile, PDF viewer"
+          loading="lazy"
+        >
+          <p>
+            Your browser cannot show PDF files inside this page.
+            <a href={pdfPath} download>Download the company profile (PDF)</a>
+            to read it in any PDF reader.
+          </p>
+        </iframe>
+      </div>
+      <p class="pdf-hint">
+        If the viewer shows only the first page on your phone, use
+        <strong>Open in new tab</strong> or <strong>Download PDF</strong> for the full document.
+      </p>
+
+      <div style="margin-top:48px">
+        <SectionHeading first="INSIDE THE" second="PROFILE" />
+        <ol class="profile-contents">
+          {contents.map((c) => (
+            <li>
+              <span class="profile-num" aria-hidden="true">{c.n}</span>
+              <span class="profile-label">{c.label}</span>
+              <span class="profile-note">{c.note}</span>
+            </li>
+          ))}
+        </ol>
+        <p style="margin-top:28px;max-width:70ch">
+          The profile matches the facts on this website: founded in 2016 by
+          Elia Hangeinge Mudesha, seven service lines, one workforce, and clients that
+          include government offices, mines, retailers and hospitality groups across Namibia.
+          For a printable quote based on your site and needs, request one on the
+          <a href="/contact">contact page</a> or browse our <a href="/projects">past projects</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <CTABand />
+</Base>
+
+<script>
+  const btn = document.getElementById('pdf-fullscreen');
+  const stage = document.getElementById('pdf-stage');
+  const pdfUrl = document.getElementById('pdf-frame')?.getAttribute('src')?.split('#')[0];
+  btn?.addEventListener('click', () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+      return;
+    }
+    if (stage?.requestFullscreen) {
+      stage.requestFullscreen().catch(() => window.open(pdfUrl, '_blank'));
+    } else if (pdfUrl) {
+      window.open(pdfUrl, '_blank');
+    }
+  });
+</script>
+
+<style>
+  .profile-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .pdf-meta {
+    color: var(--muted, #555);
+    font-size: 0.9rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .pdf-stage {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 18px;
+    overflow: hidden;
+    background: #f2f2f2;
+  }
+  .pdf-stage iframe {
+    display: block;
+    width: 100%;
+    height: min(78vh, 900px);
+    border: 0;
+  }
+  .pdf-stage:fullscreen iframe {
+    height: 100vh;
+  }
+  .pdf-hint {
+    margin-top: 10px;
+    color: var(--muted, #555);
+    font-size: 0.9rem;
+  }
+  .profile-contents {
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    max-width: 720px;
+  }
+  .profile-contents li {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    grid-template-areas: 'num label' 'num note';
+    column-gap: 14px;
+    padding: 12px 16px;
+    background: var(--brand-surface, #fafafa);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 14px;
+  }
+  .profile-num {
+    grid-area: num;
+    align-self: center;
+    color: var(--brand-red, #a70202);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .profile-label {
+    grid-area: label;
+    font-weight: 700;
+  }
+  .profile-note {
+    grid-area: note;
+    color: var(--muted, #555);
+    font-size: 0.92rem;
+  }
+  @media (max-width: 560px) {
+    .profile-contents li {
+      grid-template-columns: 36px 1fr;
+      padding: 10px 12px;
+    }
+  }
+</style>

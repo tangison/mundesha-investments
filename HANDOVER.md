@@ -141,3 +141,31 @@ Applied vercel-labs web-interface-guidelines review + shadcn technique to the wh
 - Infrastructure: color-scheme light, touch-action manipulation, tabular-nums, scroll-margin-top, inter-600 preload, print stylesheet.
 
 Commit 0695577. Live on Vercel.
+
+## v7 (clean logos + back to top)
+
+Client reported the site logo broken; the v3 kit's re-traced SVGs had a jagged
+sawtooth notch in the M mark's centre stem, and the whole favicon suite had been
+regenerated from that bad icon. New logo files came from the client's kit zip on
+filebin (bin 2ro54ii3mfk07fns, exported 5 Oct 20:22, right before upload; the
+alternate zip in the same bin is a truncated zero-padded upload with no
+recoverable logos - verified by local-header scan).
+
+- All 6 Mundesha SVGs replaced with the clean set, SVGO-optimised (84-102 KB raw
+  down to 50-62 KB, viewBox preserved, pixel-parity checked: only sub-visible
+  edge antialiasing at 960 px).
+- Favicon suite regenerated from the clean icon: favicon.svg, favicon.ico
+  (285 KB down to 4.2 KB, 16/32/48), favicon-32, apple-touch-icon (180),
+  icon-192, icon-512. OG image untouched (it uses the wall-sign photo, which was
+  always clean).
+- New BackToTop.astro: fixed circular button, appears after 600 px, rAF-throttled
+  passive scroll listener, smooth scroll (auto under prefers-reduced-motion),
+  hidden from tab order and the accessibility tree when off-screen (visibility),
+  48 px touch target, focus ring with 3 px offset, sits above the mobile call
+  bar (12 px gap + safe-area) and below the drawer backdrop (z 85 vs 90), hidden
+  in print.
+- Verified: all 19 routes 200, one H1 per page, no heading jumps, 0 px overflow
+  at iPhone 14 on 11 routes, zero console errors, live SVG md5 matches dist,
+  real-keyboard Tab reaches the button with visible ring.
+
+Commit 0711ad7. Live on Vercel.

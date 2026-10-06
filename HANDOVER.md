@@ -210,3 +210,48 @@ mundesha.com, competitor check.
   live HTML, pill/circle styles confirmed in computed styles on production.
 
 Commit be089ff. Live on Vercel.
+
+## v9 (Task 10, 6 October 2026): company profile player, offcanvas logo fix, client logo refresh
+
+- Offcanvas logo fixed: the mobile drawer (dark --brand-ink surface) previously used
+  mundesha-logo-horizontal-light.svg, the dark wordmark meant for white backgrounds
+  (black logo on black background). It now uses mundesha-logo-horizontal-dark.svg,
+  the white wordmark variant, and every letter renders sharp on the dark surface.
+- Company profile: client-supplied Mundesha_Company_Profile_v4.pdf (14.9 MB, sha1
+  1d9bc057) downloaded from the filebin, renamed to Mundesha-Investments-Company-
+  Profile.pdf and compressed with Ghostscript (220 dpi bicubic cap, DCT encode) to
+  4.8 MB. All 14 pages pixel-compared against the original at 150 dpi; worst page
+  differs on 1.3 percent of pixels (JPEG recompression noise), text selectable.
+- New page /company-profile: same-origin iframe PDF player (CSP-compatible), pill
+  buttons Download PDF / Open in new tab / Fullscreen, chapter list, honest meta
+  (14 pages, 4.8 MB), no-PDF-viewer fallback link, zero-JS fallback inside iframe.
+- Links: footer Company column gains "Company profile (PDF)" on every page; drawer
+  Company list gains "Company profile"; search index gains the page (47 entries);
+  sitemap gains /company-profile (20 URLs).
+- CSP: frame-ancestors 'none' changed to 'self' and X-Frame-Options removed, so the
+  same-origin PDF viewer works; clickjacking protection is carried by CSP
+  frame-ancestors (modern equivalent). vercel.json adds /downloads/ cache header.
+- Client logos: all 13 rebuilt from the company profile's own page-6 artwork
+  (scripts/deploy_profile_assets.py; colour+smask pairs combined to alpha webp,
+  trimmed, max 480 px). Total wall weight 250 KB to 136 KB. Slugs unchanged, so
+  images.json URLs are stable; dimensions updated in images.json. Grayscale idle /
+  colour hover wall style unchanged (pre-existing design).
+- og-image.jpg recompressed q82 (kept JPEG: WhatsApp and Facebook link crawlers do
+  not reliably render WebP previews; WhatsApp is the primary share channel).
+- Skill runs (user-requested): ux-writing (applied to profile page copy and
+  buttons), site-architecture (orphan check: /company-profile has footer + drawer +
+  search + sitemap inbound links), seo-audit (OpenSEO MCP tools unavailable in this
+  environment; non-MCP principles applied, honest note recorded), safe-debug
+  (diagnose-first applied; ML-specific artefacts N/A), improve-codebase-architecture
+  (Explore + HTML report to /tmp; no refactors executed by design at handover).
+- Finisher: tangison-client-handover pack delivered (PDF, 10 pages, QA PASS:
+  /home/z/my-project/download/Mundesha-Investments-Digital-Foundation-Pack.pdf)
+  plus editable letters docx (postcheck PASS: Mundesha-Handover-Letters.docx).
+- Deployed: commit e68c739 pushed; Vercel auto-deploy verified live
+  (/company-profile 200, /downloads PDF 200 exact byte match, drawer dark logo and
+  footer link in live HTML, CSP frame-ancestors live, search index live with entry).
+- Client actions pending: DNS cutover for mundesha.com (A 76.76.21.21, www CNAME
+  cname.vercel-dns.com), create info@mundesha.com mailbox with SPF/DKIM/DMARC,
+  approve and sign the reference letter wording, confirm warranty/response times.
+
+Commit e68c739. Live on Vercel.
